@@ -1,0 +1,24 @@
+- name: cf-mgmt-config
+  version: 1.0.6
+  platforms:
+  - name: linux    
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotalservices/cf-mgmt/releases/download/v((version))/cf-mgmt-config-linux
+        out: ((package_install_directory))/cf-mgmt-config-((version))-linux
+  - name: windows    
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotalservices/cf-mgmt/releases/download/v((version))/cf-mgmt-config.exe
+        out: ((package_install_directory))/cf-mgmt-config-((version))-windows.exe    
+  - name: darwin    
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotalservices/cf-mgmt/releases/download/v((version))/cf-mgmt-config-osx
+        out: ((package_install_directory))/cf-mgmt-config-((version))-darwin    

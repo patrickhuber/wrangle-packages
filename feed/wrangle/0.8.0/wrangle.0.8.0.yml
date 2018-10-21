@@ -1,0 +1,40 @@
+package:
+  name: wrangle
+  version: 0.9.0
+  platforms:
+  - name: linux
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-linux-amd64.tgz
+        out: ((package_install_directory))/wrangle-((version))-linux-amd64.tgz
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_install_directory))/wrangle-((version))-linux-amd64.tgz
+        destination: ((package_install_directory))
+  - name: darwin
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-darwin-amd64.tgz
+        out: ((package_install_directory))/wrangle-((version))-darwin-amd64.tgz
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_install_directory))/wrangle-((version))-darwin-amd64.tgz
+        destination: ((package_install_directory))
+  - name: windows
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-windows-amd64.zip
+        out: ((package_cache_directory))/wrangle-((version))-windows.zip
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_cache_directory))/wrangle-((version))-windows.zip
+        destination: ((package_install_directory))

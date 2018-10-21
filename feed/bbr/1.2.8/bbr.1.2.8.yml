@@ -1,0 +1,42 @@
+package:
+  name: bbr
+  version: 1.2.8  
+  platforms:
+  - name: linux 
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/cloudfoundry-incubator/bosh-backup-and-restore/releases/download/v((version))/bbr-((version)).tar
+        out: ((package_cache_directory))/bbr-((version))-linux.tar
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_cache_directory))/bbr-((version))-linux.tar
+        destination: ((package_install_directory))        
+        files:
+        - bbr$
+    - name: rename
+      type: move
+      params: 
+        source: bbr
+        destination: bbr-((version))-linux
+  - name: darwin
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/cloudfoundry-incubator/bosh-backup-and-restore/releases/download/v((version))/bbr-((version)).tar
+        out: ((package_cache_directory))/bbr-((version))-linux.tar
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_cache_directory))/bbr-((version))-darwin.tar
+        destination: ((package_install_directory))        
+        files:
+        - bbr-mac$
+    - name: rename
+      type: move
+      params: 
+        source: bbr-mac
+        destination: bbr-((version))-darwin

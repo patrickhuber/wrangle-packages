@@ -1,0 +1,25 @@
+package:
+  name: om
+  version: 0.42.0
+  platforms:
+  - name: linux
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotal-cf/om/releases/download/((version))/om-linux
+        out: ((package_install_directory))/om-((version))-linux
+  - name: darwin
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotal-cf/om/releases/download/((version))/om-darwin
+        out: ((package_install_directory))/om-((version))-darwin
+  - name: windows
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotal-cf/om/releases/download/((version))/om-windows.exe
+        out: ((package_install_directory))/om-((version))-windows.exe

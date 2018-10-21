@@ -1,0 +1,46 @@
+packge: 
+  name: cf
+  version: 6.37.0
+  platforms:
+  - name: linux
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://packages.cloudfoundry.org/stable?release=linux64-binary&version=((version))&source=github-rel
+        out: cf_cli_((version))_linux_amd64.tgz
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_cache_directory))/cf_cli_((version))_linux_amd64.tgz
+        destination: ((package_install_directory))
+        files:
+        - cf
+  - name: darwin
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://packages.cloudfoundry.org/stable?release=macosx64-binary&version=((version))&source=github-rel
+        out: cf_cli_((version))_darwin_amd64.tgz
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_cache_directory))/cf_cli_((version))_darwin_amd64.tgz
+        destination: ((package_install_directory))
+        files:
+        - cf
+  - name: windows
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://packages.cloudfoundry.org/stable?release=windows64-exe&version=((version))&source=github-rel
+        out: ((package_cache_directory))/cf-cli_((version))_windows_amd64.zip
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_cache_directory))/cf-cli_((version))_windows_amd64.zip
+        destination: ((package_install_directory))
+        files:
+        - cf

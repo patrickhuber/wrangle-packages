@@ -1,0 +1,40 @@
+package:
+  name: vault
+  version: 0.11.3
+  platforms:
+  - name: linux
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://releases.hashicorp.com/vault/0.11.3/vault_0.11.3_linux_amd64.zip
+        out: ((package_install_directory))/vault-((version))-linux.zip
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_install_directory))/vault-((version))-linux.zip
+        destination: ((package_install_directory))
+  - name: darwin
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://releases.hashicorp.com/vault/0.11.3/vault_0.11.3_darwin_amd64.zip
+        out: ((package_install_directory))/vault-((version))-darwin.zip
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_install_directory))/vault-((version))-darwin.zip
+        destination: ((package_install_directory))
+  - name: windows
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://releases.hashicorp.com/vault/0.11.3/vault_0.11.3_windows_amd64.zip
+        out: ((package_cache_directory))/vault-((version))-windows.zip
+    - name: extract
+      type: extract
+      params:
+        archive: ((package_cache_directory))/vault-((version))-windows.zip
+        destination: ((package_install_directory))

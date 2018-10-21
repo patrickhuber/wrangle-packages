@@ -1,0 +1,25 @@
+package:
+  name: yaml-patch
+  version: 0.0.11
+  platforms:
+  - name: windows
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotal-cf/yaml-patch/releases/download/v0.0.11/yaml_patch.exe
+        out: ((package_install_directory))/yaml_patch_((version))_windows.exe
+  - name: linux
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotal-cf/yaml-patch/releases/download/v0.0.11/yaml_patch_linux
+        out: ((package_install_directory))/yaml_patch_((version))_linux
+  - name: darwin
+    tasks:
+    - name: download
+      type: download
+      params:
+        url: https://github.com/pivotal-cf/yaml-patch/releases/download/v0.0.11/yaml_patch_darwin
+        out: ((package_install_directory))/yaml_patch_((version))_darwin
