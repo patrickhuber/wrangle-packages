@@ -5,14 +5,14 @@ targets:
   tasks:
   - download:
       url: https://github.com/cloudfoundry/bosh-cli/releases/download/v((version))/bosh-cli-((version))-windows-amd64.exe
-      out: ((package_install_directory))/bosh-cli-((version))-windows-amd64.exe
+      out: bosh-cli-((version))-windows-amd64.exe
 - platform: linux
   tasks:
   - download:
       url: https://github.com/cloudfoundry/bosh-cli/releases/download/v((version))/bosh-cli-((version))-linux-amd64
-      out: ((package_install_directory))/bosh-cli-((version))-linux-amd64
+      out: bosh-cli-((version))-linux-amd64
 - platform: darwin
   tasks:
   - download:
       url: https://github.com/cloudfoundry/bosh-cli/releases/download/v((version))/bosh-cli-((version))-darwin-amd64
-      out: ((package_install_directory))/bosh-cli-((version))-darwin-amd64
+      out: bosh-cli-((version))-darwin-amd64
