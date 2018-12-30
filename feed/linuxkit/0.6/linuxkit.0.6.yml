@@ -1,25 +1,18 @@
-package:
-  name: linuxkit
-  version: 0.6
-  platforms:
-  - name: windows
-    tasks:
-    - name: download
-      type: download
-      params:
-        url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-windows-amd64.exe
-        out: ((package_install_directory))/linuxkit_((version))_windows.exe
-  - name: linux
-    tasks:
-    - name: download
-      type: download
-      params:
-        url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-linux-amd64
-        out: ((package_install_directory))/linuxkit_((version))_linux
-  - name: darwin
-    tasks:
-    - name: download
-      type: download
-      params:
-        url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-darwin-amd64
-        out: ((package_install_directory))/linuxkit_((version))_darwin
+name: linuxkit
+version: 0.6
+targets:
+- platform: windows
+  tasks:
+  - download:
+      url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-windows-amd64.exe
+      out: linuxkit_((version))_windows.exe
+- platform: linux
+  tasks:
+  - download:
+      url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-linux-amd64
+      out: linuxkit_((version))_linux
+- platform: darwin
+  tasks:
+  - download:
+      url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-darwin-amd64
+      out: linuxkit_((version))_darwin

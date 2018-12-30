@@ -1,45 +1,24 @@
-package: 
-  name: credhub
-  version: 1.7.6  
-  platforms:    
-  - name: linux
-    tasks:
-    - name: download
-      type: download
-      params:
-        url: https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/((version))/credhub-linux-((version)).tgz      
-        out: ((package_cache_directory))/credhub-linux-((version)).tgz
-    - name: extract
-      type: extract
-      params:
-        archive: ((package_cache_directory))/credhub-linux-((version)).tgz
-        destination: ((package_install_directory))
-        files: 
-        - ^credhub-linux-((version))$
-  - name: darwin    
-    tasks:
-    - name: download
-      type: download
-      params:
-        url: https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/((version))/credhub-darwin-((version)).tgz      
-        out: ((package_cache_directory))/credhub-darwin-((version)).tgz
-    - name: extract
-      type: extract
-      params:
-        archive: ((package_cache_directory))/credhub-darwin-((version)).tgz
-        destination: ((package_install_directory))
-        files:
-        - ^credhub-darwin-((version))$
-  - name: windows
-    tasks:
-    - name: download
-      type: download
-      params:
-        url: https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/((version))/credhub-windows-((version)).tgz      
-        out: credhub-windows-((version)).tgz
-    - name: extract    
-      params:
-        archive: ((package_cache_directory))/credhub-windows-((version)).tgz
-        destination: ((package_install_directory))
-        files: 
-        - ^credhub-windows-((version)).exe$
+name: credhub
+version: 1.7.6  
+targets:    
+- platform: linux
+  tasks:
+  - download:
+      url: https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/((version))/credhub-linux-((version)).tgz      
+      out: credhub-linux-((version)).tgz
+  - extract:
+      archive: credhub-linux-((version)).tgz
+- platform: darwin    
+  tasks:
+  - download:
+      url: https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/((version))/credhub-darwin-((version)).tgz      
+      out: credhub-darwin-((version)).tgz
+  - extract:
+      archive: credhub-darwin-((version)).tgz
+- platform: windows
+  tasks:
+  - download:
+      url: https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/((version))/credhub-windows-((version)).tgz      
+      out: credhub-windows-((version)).tgz
+  - extract:
+      archive: credhub-windows-((version)).tgz
