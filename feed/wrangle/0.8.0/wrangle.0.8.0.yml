@@ -5,20 +5,20 @@ targets:
   tasks:
   - download:
       url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-linux-amd64.tgz
-      out: ((package_install_directory))/wrangle-((version))-linux-amd64.tgz
+      out: wrangle-((version))-linux-amd64.tgz
   - extract:
-      archive: ((package_install_directory))/wrangle-((version))-linux-amd64.tgz
+      archive: wrangle-((version))-linux-amd64.tgz
 - platform: darwin
   tasks:
   - download:
       url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-darwin-amd64.tgz
-      out: ((package_install_directory))/wrangle-((version))-darwin-amd64.tgz
+      out: wrangle-((version))-darwin-amd64.tgz
   - extract:
-      archive: ((package_install_directory))/wrangle-((version))-darwin-amd64.tgz
+      archive: wrangle-((version))-darwin-amd64.tgz
 - platform: windows
   tasks:
   - download:
       url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-windows-amd64.zip
-      out: ((package_cache_directory))/wrangle-((version))-windows.zip
+      out: wrangle-((version))-windows.zip
   - extract:
-      archive: ((package_cache_directory))/wrangle-((version))-windows.zip
+      archive: wrangle-((version))-windows.zip
