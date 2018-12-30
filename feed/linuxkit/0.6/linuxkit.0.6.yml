@@ -1,17 +1,17 @@
 name: linuxkit
 version: 0.6
 targets:
-- name: windows
+- platform: windows
   tasks:
   - download:
       url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-windows-amd64.exe
       out: linuxkit_((version))_windows.exe
-- name: linux
+- platform: linux
   tasks:
   - download:
       url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-linux-amd64
       out: linuxkit_((version))_linux
-- name: darwin
+- platform: darwin
   tasks:
   - download:
       url: https://github.com/linuxkit/linuxkit/releases/download/v((version))/linuxkit-darwin-amd64
