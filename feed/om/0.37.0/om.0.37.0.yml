@@ -1,17 +1,17 @@
 name: om
 version: 0.42.0
 targets:
-- name: linux
+- platform: linux
   tasks:
   - download:
       url: https://github.com/pivotal-cf/om/releases/download/((version))/om-linux
       out: om-((version))-linux
-- name: darwin
+- platform: darwin
   tasks:
   - download:
       url: https://github.com/pivotal-cf/om/releases/download/((version))/om-darwin
       out: om-((version))-darwin
-- name: windows
+- platform: windows
   tasks:
   - download:
       url: https://github.com/pivotal-cf/om/releases/download/((version))/om-windows.exe
