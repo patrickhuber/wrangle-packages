@@ -5,14 +5,14 @@ targets:
   tasks:
   - download:
       url: https://github.com/pivotalservices/cf-mgmt/releases/download/v((version))/cf-mgmt-config-linux
-      out: ((package_install_directory))/cf-mgmt-config-((version))-linux
+      out: cf-mgmt-config-((version))-linux
 - platform: windows    
   tasks:
   - download:
       url: https://github.com/pivotalservices/cf-mgmt/releases/download/v((version))/cf-mgmt-config.exe
-      out: ((package_install_directory))/cf-mgmt-config-((version))-windows.exe    
+      out: cf-mgmt-config-((version))-windows.exe    
 - platform: darwin    
   tasks:
   - download:
       url: https://github.com/pivotalservices/cf-mgmt/releases/download/v((version))/cf-mgmt-config-osx
-      out: ((package_install_directory))/cf-mgmt-config-((version))-darwin    
+      out: cf-mgmt-config-((version))-darwin    
