@@ -1,5 +1,5 @@
 name: bbr
-version: 1.2.8  
+version: 1.2.8
 targets:
 - platform: linux 
   tasks:
