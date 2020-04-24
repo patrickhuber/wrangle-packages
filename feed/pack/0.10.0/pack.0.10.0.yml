@@ -1,0 +1,18 @@
+name: pack
+version: 0.10.0
+targets:
+- platform: windows
+  tasks: 
+  - download: 
+      url: https://github.com/buildpacks/pack/releases/download/v((version))/pack-v((version))-windows.zip
+      out: pack_((version))_win64.exe
+- platform: darwin
+  tasks:
+  - download:
+      url: https://github.com/buildpacks/pack/releases/download/v((version))/pack-v((version))-macos.tgz
+      out: pack_((version))_osx_amd64
+- platform: linux
+  tasks:
+  - download:
+      url: https://github.com/buildpacks/pack/releases/download/v((version))/pack-v((version))-linux.tgz
+      out: pack_((version))_linux_64
