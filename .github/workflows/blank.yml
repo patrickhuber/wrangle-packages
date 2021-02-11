@@ -4,11 +4,10 @@ name: CI
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  # triggers the workflow on a specified schedule  
+  schedule:
+    # this schedule will run every hour https://crontab.guru/every-1-hour
+  - cron: '0 * * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,15 +21,22 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Install required packages
+      - name: Install Packages
+        env:
+          YQ_BINARY: yq_linux_amd64
+          YQ_VERSION: v4.5.1
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY}.tar.gz -O - | tar xz && sudo mv ${YQ_BINARY} /usr/bin/yq
+          sudo chmod +x /usr/bin/yq
+
+      - name: Update Latest Packages
+        run: |
+          la feed -1a | while read package
+          do
+            echo "$package"
+          done
