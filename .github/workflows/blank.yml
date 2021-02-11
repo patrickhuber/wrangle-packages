@@ -36,7 +36,7 @@ jobs:
 
       - name: Update Latest Packages
         run: |
-          la feed -1a | while read package
+          ls feed -1a | while read package
           do
             echo "$package"
           done
