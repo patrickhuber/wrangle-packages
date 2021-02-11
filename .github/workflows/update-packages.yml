@@ -40,4 +40,4 @@ jobs:
 
       # Run through each package and process the template for the latest version in the resource
       - name: Update Latest Packages
-        run: ./scripts/update-packages.sh          
+        run: ./scripts/update-packages.sh

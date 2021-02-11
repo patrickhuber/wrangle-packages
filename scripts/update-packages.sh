@@ -14,15 +14,15 @@ do
   fi
 
   # check the type of the resource, skip if not github-release
-  resource_type=$(yq r $resource_file resource.type)
+  resource_type=$(yq e $resource_file resource.type)
   if [ $resource_type != "github-release" ]; then
     echo "skip: $package, unknown release type '$resource_type'"
     continue;
   fi
   
   # get latest version from the owner/repository
-  github_release_owner=$(yq r $resource_file resource.source.owner )
-  github_release_repository=$(yq r $resource_file resource.source.repository )
+  github_release_owner=$(yq e '.resource.source.repository' $resource_file)
+  github_release_repository=$(yq e '.resource.source.repository' $resource_file)
 
   github_release_latest=$(curl -s https://api.github.com/repos/$github_release_owner/$github_release_repository/releases/latest | jq .name -r)
   github_release_latest=$(echo ${github_release_latest//v})
@@ -31,7 +31,7 @@ do
   state_file="$package_dir/state.yml"            
 
   if [ -f $state_file ]; then
-    version=$(yq r $state_file version)
+    version=$(yq e '.version' $state_file)
     if [ $version == $github_release_latest ]; then
         echo "skip: $package, on latest version"
         continue;
@@ -42,8 +42,7 @@ do
   package_version_dir="$package_dir/$version"
 
   # write the latest version out to the latest file
-  yq w $state_file version $version
-  cat $state_file
+  yq e ".version = env(version)" -i $state_file  
 
   # create the package version 
   mkdir -p "$package_dir/$version"
