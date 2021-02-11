@@ -36,7 +36,13 @@ jobs:
 
       - name: Update Latest Packages
         run: |
+          # loop through all the packages
           ls feed -1 | while read package
           do
+            
+            # check for the $package/resource.yml file, if it doesn't exist, skip this package
+            if [ ! -f "$package/resource.yml" ]; then
+              continue;
+            fi
             echo "$package"
           done
