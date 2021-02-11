@@ -1,6 +1,7 @@
-name: github-releases
-type: github-release
-source:
-  owner: cloudfoundry
-  repository: bosh-bootloader
-  version-regex: '[0-9]\.[0-9]\.[0-9]'
+resource:
+  name: github-releases
+  type: github-release
+  source:
+    owner: cloudfoundry
+    repository: bosh-bootloader
+    version-regex: '[0-9]\.[0-9]\.[0-9]'
