@@ -25,8 +25,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Install required packages
-      - name: Install Packages
+      # Install required dependencies
+      - name: Install Dependencies
         env:
           YQ_BINARY: yq_linux_amd64
           YQ_VERSION: v4.5.1
@@ -40,50 +40,4 @@ jobs:
 
       # Run through each package and process the template for the latest version in the resource
       - name: Update Latest Packages
-        run: |
-          # loop through all the packages
-          ls feed -1 | while read package
-          do
-            package_dir="feed/$package"
-            resource_file="$package_dir/resource.yml"
-            # check for the $resource_file, if it doesn't exist, skip this package
-            if [ ! -f $resource_file ]; then
-              continue;
-            fi
-
-            # check the type of the resource, skip if not github-release
-            resource_type=$(yq r $resource_file type)
-            if [ $resource_type != "github-release" ]; then
-              continue;
-            fi
-            
-            # get latest version from the owner/repository
-            github_release_owner=$(yq r $resource_file source.owner )
-            github_release_repository=$(yq r $resource_file source.repository )
-
-            github_release_latest=$(curl -s https://api.github.com/repos/$github_release_owner/$github_release_repository/releases/latest | jq .name -r)
-            
-            # check for the state file
-
-            state_file="$package_dir/state.yml"            
-
-            if [ -f $latest_file ]; then
-              version=$(yq r $latest_file version)
-              if [ $version == $github_release_latest ]; then
-                  continue;
-              fi
-            fi
-
-            version=$(echo $github_release_latest)
-            package_version_dir="$package_dir/$version"
-
-            # write the latest version out to the latest file
-            yq w $state_file version $version
-            cat $state_file
-
-            # create the package version 
-            mkdir -p "$package_dir/$version"
-
-            # run the template to generate the package file
-            renderizer --settings=$package_dir/platforms.yml --settings=$package_dir/resource.yml --settings=$package_dir/state.yml template.yml > $package_version_dir/package.yml
-          done
+        run: ./scripts/update-packages.sh          
