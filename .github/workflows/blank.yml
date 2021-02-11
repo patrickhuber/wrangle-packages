@@ -40,8 +40,8 @@ jobs:
           ls feed -1 | while read package
           do
             
-            # check for the $package/resource.yml file, if it doesn't exist, skip this package
-            if [ ! -f "$package/resource.yml" ]; then
+            # check for the feed/$package/resource.yml file, if it doesn't exist, skip this package
+            if [ ! -f "feed/$package/resource.yml" ]; then
               continue;
             fi
             echo "$package"
