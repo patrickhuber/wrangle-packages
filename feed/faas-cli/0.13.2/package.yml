@@ -1,0 +1,41 @@
+package:
+  name: faas-cli
+  version: 0.13.2
+  targets:
+  - platform: linux
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/openfaas/faas-cli/releases/download/0.13.2/faas-cli
+        out: faas-cli-linux-amd64
+  - platform: linux
+    architecture: arm64
+    tasks:
+    - download:
+        url: https://github.com/openfaas/faas-cli/releases/download/0.13.2/faas-cli-arm64
+        out: faas-cli-linux-arm64
+  - platform: linux
+    architecture: armv6
+    tasks:
+    - download:
+        url: https://github.com/openfaas/faas-cli/releases/download/0.13.2/faas-cli-armhf
+        out: faas-cli-linux-armv6
+  - platform: linux
+    architecture: armv7
+    tasks:
+    - download:
+        url: https://github.com/openfaas/faas-cli/releases/download/0.13.2/faas-cli-armhf
+        out: faas-cli-linux-armv7
+  - platform: windows
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/openfaas/faas-cli/releases/download/0.13.2/faas-cli.exe
+        out: faas-cli-windows-amd64
+  - platform: darwin
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/openfaas/faas-cli/releases/download/0.13.2/faas-cli-darwin
+        out: faas-cli-darwin-amd64
+  

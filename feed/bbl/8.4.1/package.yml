@@ -1,0 +1,23 @@
+package:
+  name: bbl
+  version: 8.4.1
+  targets:
+  - platform: linux
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/cloudfoundry/bosh-bootloader/releases/download/v8.4.1/bbl-v8.4.1_linux_x86-64
+        out: bbl-v8.4.1_linux_x86-64
+  - platform: windows
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/cloudfoundry/bosh-bootloader/releases/download/v8.4.1/bbl-v8.4.1_windows.exe
+        out: bbl-v8.4.1_windows.exe
+  - platform: darwin
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/cloudfoundry/bosh-bootloader/releases/download/v8.4.1/bbl-v8.4.1_osx
+        out: bbl-v8.4.1_osx
+  

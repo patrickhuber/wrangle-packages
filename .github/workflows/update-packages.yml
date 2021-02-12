@@ -30,13 +30,12 @@ jobs:
         env:
           YQ_BINARY: yq_linux_amd64
           YQ_VERSION: v4.5.1
-          GO_VERSION: 1.15.8
+          RENDERIZER_VERSION: v2.0.11          
         run: |
           wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY}.tar.gz -O - | tar xz && sudo mv ${YQ_BINARY} /usr/bin/yq
           sudo chmod +x /usr/bin/yq
-          wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz -O - | sudo tar xz -C /usr/local
-          export PATH=$PATH:/usr/local/go/bin
-          go get github.com/gomatic/renderizer/cmd/renderizer
+          sudo wget https://github.com/gomatic/renderizer/releases/download/${RENDERIZER_VERSION}/renderizer_linux_amd64 -O /usr/bin/renderizer
+          sudo chmod +x /usr/bin/renderizer
 
       # Run through each package and process the template for the latest version in the resource
       - name: Update Latest Packages

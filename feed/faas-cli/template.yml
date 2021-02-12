@@ -1,0 +1,24 @@
+package:
+  name: faas-cli
+  version: {{ .version }}
+  targets:
+  {{ range .platforms -}}
+  - platform: {{ .platform }}
+    architecture: {{ .architecture }}
+    tasks:
+    - download:
+        {{- $suffix := "" -}}
+        {{- if eq .platform "windows" -}}
+          {{- $suffix = ".exe" -}}
+        {{- else if eq .platform "darwin" -}}
+          {{- $suffix = "-darwin" -}}
+        {{- else if eq .architecture "arm64" -}}
+          {{- $suffix = "-arm64" -}}
+        {{- else if eq .architecture "armv6" -}}
+          {{- $suffix = "-armhf" -}}
+        {{- else if eq .architecture "armv7" -}}
+          {{- $suffix = "-armhf" -}}
+        {{- end }}
+        url: https://github.com/openfaas/faas-cli/releases/download/{{ $.version }}/faas-cli{{ $suffix }}
+        out: faas-cli-{{ .platform }}-{{ .architecture }}
+  {{ end }}

@@ -1,0 +1,13 @@
+platforms:
+- platform: linux
+  architecture: amd64
+- platform: linux
+  architecture: arm64
+- platform: linux
+  architecture: armv6
+- platform: linux
+  architecture: armv7  
+- platform: windows
+  architecture: amd64
+- platform: darwin
+  architecture: amd64

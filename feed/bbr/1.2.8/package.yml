@@ -1,0 +1,23 @@
+name: bbr
+version: 1.2.8
+targets:
+- platform: linux 
+  tasks:
+  - download:
+      url: https://github.com/cloudfoundry-incubator/bosh-backup-and-restore/releases/download/v1.2.8/bbr-1.2.8.tar
+      out: bbr-1.2.8-linux.tar
+  - extract:
+      archive: bbr-1.2.8-linux.tar
+  - move:
+      source: bbr
+      destination: bbr-1.2.8-linux
+- platform: darwin
+  tasks:
+  - download:
+      url: https://github.com/cloudfoundry-incubator/bosh-backup-and-restore/releases/download/v1.2.8/bbr-1.2.8.tar
+      out: bbr-1.2.8-linux.tar
+  - extract:
+      archive: bbr-1.2.8-darwin.tar
+  - move:
+      source: bbr-mac
+      destination: bbr-1.2.8-darwin

@@ -1,0 +1,17 @@
+package: 
+  name: bbr
+  version: {{ .version }}
+  targets:
+  {{ range .platforms -}}
+  - platform: {{ .platform }}
+    architecture: {{ .architecture }}
+    tasks:
+    - download:
+        url: https://github.com/cloudfoundry-incubator/bosh-backup-and-restore/releases/download/v{{ $.version }}/bbr-{{ $.version }}-{{ .platform }}-{{ .architecture }}.tar
+        out: bbr-{{ $.version }}-{{ .platform }}.tar
+    - extract:
+        archive: bbr-{{ $.version }}-{{ .platform }}.tar
+    - move:
+        source: bbr{{ if eq .platform "darwin" }}-mac{{end}}
+        destination: bbr-{{ $.version }}-{{ .platform }}
+  {{ end }}

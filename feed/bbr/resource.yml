@@ -2,6 +2,6 @@ resource:
   name: github-release
   type: github-release
   source:
-    owner: cloudfoundry
-    repository: bosh-bootloader
+    owner: cloudfoundry-incubator
+    repository: bosh-backup-and-restore
     version-regex: '[0-9]+\.[0-9]+\.[0-9]+'
