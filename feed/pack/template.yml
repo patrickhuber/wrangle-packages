@@ -1,0 +1,29 @@
+package:
+  name: pack
+  version: {{ .version }}
+  targets:
+  {{ range .platforms -}}
+  - platform: {{ .platform }}
+    architecture: {{ .architecture }}
+    tasks:    
+    {{- $extension := ".tgz" }}
+    {{- if eq .platform "windows" }}
+       {{- $extension = ".zip" }}
+    {{- end }}
+    {{- $suffix := "" }}
+    {{- if eq .architecture "arm64" }}
+      {{- $suffix = "-arm64" }}
+    {{- end}}
+    {{- $os := .platform }}
+    {{- if eq .platform "darwin" }}
+      {{- $os = "macos"}}
+    {{- end }}
+    - download:
+        url: https://github.com/buildpacks/pack/releases/download/v{{ $.version }}/pack-v{{ $.version }}-{{ $os }}{{ $suffix }}{{ $extension }}
+        out: pack-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
+    - extract:
+        archive: pack-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
+    - move: 
+        source: pack{{ if eq .platform "windows"}}.exe{{ end }}
+        destination: pack-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ if eq .platform "windows"}}.exe{{ end }}
+  {{ end }}
