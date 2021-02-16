@@ -1,0 +1,13 @@
+platforms:
+- platform: darwin
+  architectures: [amd64]
+- platform: freebsd
+  architectures: [386, amd64]
+- platform: linux
+  architectures: [amd64, arm, arm64, mips64, mips64le, ppc64, s390x]
+- platform: netbsd
+  architectures: [386, arm, amd64]
+- platform: openbsd
+  architectures: [386, amd64]
+- platform: windows
+  architectures: [386, amd64]

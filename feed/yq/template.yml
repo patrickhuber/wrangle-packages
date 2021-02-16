@@ -1,0 +1,23 @@
+package: 
+  name: yq
+  version: {{ .version }}
+  targets:
+  {{ range .platforms -}}
+  {{ $platform := .platform -}}
+  {{ range .architectures -}}
+  {{ $architecture := . -}}
+  {{ $archive := ".tar.gz" -}}
+  {{ if eq "windows" $platform }}{{ $archive := ".zip" }}{{end -}}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    tasks:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v{{ $.version }}/yq_{{ $platform }}_{{ $architecture }}{{ $archive }}
+        out: yq-{{ $.version }}-{{ $platform }}{{ $architecture }}{{ $archive }}
+    - extract:
+        archive: yq-{{ $.version }}-{{ $platform }}{{ $architecture }}{{ $archive }}
+    - move:
+        source: yq_{{ $platform }}_{{ $architecture }}{{ if eq "windows" $platform}}.exe{{ end }}
+        destination: yq-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ if eq "windows" $platform}}.exe{{ end }}
+  {{ end -}}
+  {{ end }}
