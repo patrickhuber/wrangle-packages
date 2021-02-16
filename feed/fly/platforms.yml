@@ -1,0 +1,7 @@
+platforms:
+- platform: darwin
+  architecture: amd64
+- platform: linux
+  architecture: amd64
+- platform: windows
+  architecture: amd64

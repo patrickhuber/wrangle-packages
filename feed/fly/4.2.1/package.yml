@@ -1,0 +1,18 @@
+name: fly
+version: 4.2.1
+targets:
+- platform: windows
+  tasks: 
+  - download: 
+      url: https://github.com/concourse/concourse/releases/download/v((version))/fly_windows_amd64.exe
+      out: fly_((version))_windows_amd64.exe
+- platform: darwin
+  tasks:
+  - download:
+      url: https://github.com/concourse/concourse/releases/download/v((version))/fly_darwin_amd64
+      out: fly_((version))_darwin_amd64
+- platform: linux
+  tasks:
+  - download:
+      url: https://github.com/concourse/concourse/releases/download/v((version))/fly_linux_amd64
+      out: fly_((version))_linux_amd64

@@ -1,0 +1,23 @@
+package:
+  name: fly
+  version: {{ .version }}
+  targets:
+  {{ range .platforms -}}
+  - platform: {{ .platform }}
+    architecture: {{ .architecture }}
+    tasks:
+    - download:
+        {{- $archive := ".tgz" -}}
+        {{- $suffix := "" }}      
+        {{- if eq .platform "windows" -}}
+          {{- $archive = ".zip" -}}
+          {{- $suffix = ".exe" -}}        
+        {{- end }}
+        url: https://github.com/concourse/concourse/releases/download/v{{ $.version }}/fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $archive }}
+        out: fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $archive }}
+    - extract:
+        archive: fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $archive }}
+    - move:
+        source: fly{{ $suffix }}
+        destination: fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $suffix }}
+  {{ end }}
