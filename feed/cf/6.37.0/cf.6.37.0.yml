@@ -1,7 +1,8 @@
 name: cf
 version: 6.37.0
 targets:
-- name: linux
+- platform: linux
+  architecture: amd64
   tasks:
   - download:
       url: https://packages.cloudfoundry.org/stable?release=linux64-binary&version=((version))&source=github-rel
@@ -9,6 +10,7 @@ targets:
   - extract:
       archive: cf_cli_((version))_linux_amd64.tgz
 - platform: darwin
+  architecture: amd64
   tasks:
   - download:
       url: https://packages.cloudfoundry.org/stable?release=macosx64-binary&version=((version))&source=github-rel
@@ -16,6 +18,7 @@ targets:
   - extract:
       archive: cf_cli_((version))_darwin_amd64.tgz
 - platform: windows
+  architecture: amd64
   tasks:
   - download:
       url: https://packages.cloudfoundry.org/stable?release=windows64-exe&version=((version))&source=github-rel

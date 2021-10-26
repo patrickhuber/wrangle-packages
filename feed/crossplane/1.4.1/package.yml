@@ -1,0 +1,47 @@
+package:
+  name: crossplane
+  version: 1.4.1
+  targets:
+  - platform: linux
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://releases.crossplane.io/stable/v1.4.1/bin/linux_amd64/crossplane
+        out: crossplane-v1.4.1-linux-amd64
+  - platform: linux
+    architecture: arm64
+    tasks:
+    - download:
+        url: https://releases.crossplane.io/stable/v1.4.1/bin/linux_arm64/crossplane
+        out: crossplane-v1.4.1-linux-arm64
+  - platform: linux
+    architecture: arm
+    tasks:
+    - download:
+        url: https://releases.crossplane.io/stable/v1.4.1/bin/linux_arm/crossplane
+        out: crossplane-v1.4.1-linux-arm
+  - platform: linux
+    architecture: ppc641e
+    tasks:
+    - download:
+        url: https://releases.crossplane.io/stable/v1.4.1/bin/linux_ppc641e/crossplane
+        out: crossplane-v1.4.1-linux-ppc641e
+  - platform: windows
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://releases.crossplane.io/stable/v1.4.1/bin/windows_amd64/crossplane.exe
+        out: crossplane-v1.4.1-windows-amd64.exe
+  - platform: darwin
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://releases.crossplane.io/stable/v1.4.1/bin/darwin_amd64/crossplane
+        out: crossplane-v1.4.1-darwin-amd64
+  - platform: darwin
+    architecture: arm64
+    tasks:
+    - download:
+        url: https://releases.crossplane.io/stable/v1.4.1/bin/darwin_arm64/crossplane
+        out: crossplane-v1.4.1-darwin-arm64
+  

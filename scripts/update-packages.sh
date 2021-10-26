@@ -34,6 +34,7 @@ do
   fi
 
   # extract the version regex
+  tag_filter=$(yq e '.resource.source.tag_filter' $resource_file)
   github_release_version_regex=$(yq e '.resource.source.version-regex' $resource_file)
   if [ "$github_release_version_regex" == "null" ]; then
     github_release_version_regex=".*"

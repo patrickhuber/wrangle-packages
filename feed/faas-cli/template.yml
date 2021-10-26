@@ -3,8 +3,11 @@ package:
   version: {{ .version }}
   targets:
   {{ range .platforms -}}
-  - platform: {{ .platform }}
-    architecture: {{ .architecture }}
+  {{ $platform := .platform -}}
+  {{ range .architectures -}}
+  {{ $architecture := . -}}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
     tasks:
     - download:
         {{- $suffix := "" -}}
@@ -21,4 +24,5 @@ package:
         {{- end }}
         url: https://github.com/openfaas/faas-cli/releases/download/{{ $.version }}/faas-cli{{ $suffix }}
         out: faas-cli-{{ .platform }}-{{ .architecture }}
+  {{ end -}}
   {{ end }}

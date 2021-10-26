@@ -1,0 +1,38 @@
+package:
+  name: fly
+  version: 6.7.6
+  targets:
+  - platform: darwin
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/concourse/concourse/releases/download/v6.7.6/fly-6.7.6-darwin-amd64.tgz
+        out: fly-6.7.6-darwin-amd64.tgz
+    - extract:
+        archive: fly-6.7.6-darwin-amd64.tgz
+    - move:
+        source: fly
+        destination: fly-6.7.6-darwin-amd64
+  - platform: linux
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/concourse/concourse/releases/download/v6.7.6/fly-6.7.6-linux-amd64.tgz
+        out: fly-6.7.6-linux-amd64.tgz
+    - extract:
+        archive: fly-6.7.6-linux-amd64.tgz
+    - move:
+        source: fly
+        destination: fly-6.7.6-linux-amd64
+  - platform: windows
+    architecture: amd64
+    tasks:
+    - download:
+        url: https://github.com/concourse/concourse/releases/download/v6.7.6/fly-6.7.6-windows-amd64.zip
+        out: fly-6.7.6-windows-amd64.zip
+    - extract:
+        archive: fly-6.7.6-windows-amd64.zip
+    - move:
+        source: fly.exe
+        destination: fly-6.7.6-windows-amd64.exe
+  
