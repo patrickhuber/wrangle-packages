@@ -1,0 +1,29 @@
+package: 
+  name: shim
+  version: {{ .version }}
+  targets:
+  {{ range .platforms -}}
+  {{ $platform := .platform -}}
+  {{ range .architectures -}}
+  {{ $architecture := . -}}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    tasks:
+    {{- $archive := ".tar.gz" -}}
+    {{- if eq $platform "windows" -}}
+        {{- $archive = ".zip" -}}
+    {{- end }}
+    - download:    
+        url: https://github.com/patrickhuber/shim/releases/download/v{{ $.version }}/shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+        out: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+    - extract:
+        archive: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+    - move:
+        {{- $suffix := "" -}}
+        {{- if eq $platform "windows" -}}
+          {{- $suffix = ".exe" -}}
+        {{- end }}
+        source: shim{{ $suffix }}
+        destination: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $suffix }}
+  {{ end -}}
+  {{ end }}

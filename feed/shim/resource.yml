@@ -1,0 +1,7 @@
+resource:
+  name: github-release
+  type: github-release
+  source:
+    owner: patrickhuber
+    repository: shim
+    version-regex: '[0-9]+\.[0-9]+\.[0-9]+'

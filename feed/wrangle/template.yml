@@ -1,0 +1,29 @@
+package: 
+  name: wrangle
+  version: {{ .version }}
+  targets:
+  {{ range .platforms -}}
+  {{ $platform := .platform -}}
+  {{ range .architectures -}}
+  {{ $architecture := . -}}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    tasks:
+    {{- $archive := ".tar.gz" -}}
+    {{- if eq $platform "windows" -}}
+        {{- $archive = ".zip" -}}
+    {{- end }}
+    - download:    
+        url: https://github.com/patrickhuber/wrangle/releases/download/v{{ $.version }}/wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+        out: wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+    - extract:
+        archive: wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+    - move:
+        {{- $suffix := "" -}}
+        {{- if eq $platform "windows" -}}
+          {{- $suffix = ".exe" -}}
+        {{- end }}
+        source: wrangle{{ $suffix }}
+        destination: wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $suffix }}
+  {{ end -}}
+  {{ end }}
