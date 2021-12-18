@@ -2,10 +2,10 @@ package:
   name: shim
   version: {{ .version }}
   targets:
-  {{ range .platforms -}}
-  {{ $platform := .platform -}}
-  {{ range .architectures -}}
-  {{ $architecture := . -}}
+  {{- range .platforms -}}
+  {{- $platform := .platform -}}
+  {{- range .architectures -}}
+  {{- $architecture := . }}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
     tasks:
@@ -18,12 +18,5 @@ package:
         out: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
     - extract:
         archive: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-    - move:
-        {{- $suffix := "" -}}
-        {{- if eq $platform "windows" -}}
-          {{- $suffix = ".exe" -}}
-        {{- end }}
-        source: shim{{ $suffix }}
-        destination: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $suffix }}
-  {{ end -}}
-  {{ end }}
+  {{- end -}}
+  {{- end -}}
