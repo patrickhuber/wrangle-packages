@@ -9,7 +9,7 @@ package:
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
     tasks:
-    {{- $archive := ".tar.gz" -}}
+    {{- $archive := ".tgz" -}}
     {{- if eq $platform "windows" -}}
         {{- $archive = ".zip" -}}
     {{- end }}

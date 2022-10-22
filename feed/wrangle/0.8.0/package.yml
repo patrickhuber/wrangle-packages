@@ -6,10 +6,10 @@ package:
     architecture: amd64
     tasks:
     - download:    
-        url: https://github.com/patrickhuber/wrangle/releases/download/v0.8.0/wrangle-linux-amd64.tar.gz
-        out: wrangle-0.8.0-linux-amd64.tar.gz
+        url: https://github.com/patrickhuber/wrangle/releases/download/v0.8.0/wrangle-linux-amd64.tgz
+        out: wrangle-0.8.0-linux-amd64.tgz
     - extract:
-        archive: wrangle-0.8.0-linux-amd64.tar.gz
+        archive: wrangle-0.8.0-linux-amd64.tgz
     - move:
         source: wrangle
         destination: wrangle-0.8.0-linux-amd64
@@ -17,10 +17,10 @@ package:
     architecture: amd64
     tasks:
     - download:    
-        url: https://github.com/patrickhuber/wrangle/releases/download/v0.8.0/wrangle-darwin-amd64.tar.gz
-        out: wrangle-0.8.0-darwin-amd64.tar.gz
+        url: https://github.com/patrickhuber/wrangle/releases/download/v0.8.0/wrangle-darwin-amd64.tgz
+        out: wrangle-0.8.0-darwin-amd64.tgz
     - extract:
-        archive: wrangle-0.8.0-darwin-amd64.tar.gz
+        archive: wrangle-0.8.0-darwin-amd64.tgz
     - move:
         source: wrangle
         destination: wrangle-0.8.0-darwin-amd64
