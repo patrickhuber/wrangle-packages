@@ -10,6 +10,7 @@ package:
         out: wrangle-0.8.0-linux-amd64.tgz
     - extract:
         archive: wrangle-0.8.0-linux-amd64.tgz
+        out: wrangle
     - move:
         source: wrangle
         destination: wrangle-0.8.0-linux-amd64
@@ -21,6 +22,7 @@ package:
         out: wrangle-0.8.0-darwin-amd64.tgz
     - extract:
         archive: wrangle-0.8.0-darwin-amd64.tgz
+        out: wrangle
     - move:
         source: wrangle
         destination: wrangle-0.8.0-darwin-amd64
@@ -32,6 +34,7 @@ package:
         out: wrangle-0.8.0-windows-amd64.zip
     - extract:
         archive: wrangle-0.8.0-windows-amd64.zip
+        out: wrangle.exe
     - move:
         source: wrangle.exe
         destination: wrangle-0.8.0-windows-amd64.exe
