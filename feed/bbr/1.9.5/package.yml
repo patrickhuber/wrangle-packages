@@ -10,9 +10,6 @@ package:
         out: bbr-1.9.5-linux.tar
     - extract:
         archive: bbr-1.9.5-linux.tar
-    - move:
-        source: bbr
-        destination: bbr-1.9.5-linux
   - platform: darwin
     architecture: amd64
     tasks:
@@ -21,7 +18,4 @@ package:
         out: bbr-1.9.5-darwin.tar
     - extract:
         archive: bbr-1.9.5-darwin.tar
-    - move:
-        source: bbr-mac
-        destination: bbr-1.9.5-darwin
   

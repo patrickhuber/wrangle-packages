@@ -15,7 +15,4 @@ package:
         out: renderizer-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
     - extract:
         archive: renderizer-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
-    - move: 
-        source: renderizer{{ if eq .platform "windows"}}.exe{{ end }}
-        destination: renderizer-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ if eq .platform "windows"}}.exe{{ end }}
   {{ end }}

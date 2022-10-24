@@ -17,7 +17,4 @@ package:
         out: fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $archive }}
     - extract:
         archive: fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $archive }}
-    - move:
-        source: fly{{ $suffix }}
-        destination: fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $suffix }}
   {{ end }}

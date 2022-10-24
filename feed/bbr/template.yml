@@ -11,7 +11,4 @@ package:
         out: bbr-{{ $.version }}-{{ .platform }}.tar
     - extract:
         archive: bbr-{{ $.version }}-{{ .platform }}.tar
-    - move:
-        source: bbr{{ if eq .platform "darwin" }}-mac{{end}}
-        destination: bbr-{{ $.version }}-{{ .platform }}
   {{ end }}

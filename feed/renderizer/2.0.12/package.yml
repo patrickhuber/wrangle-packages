@@ -10,9 +10,6 @@ package:
         out: renderizer-2.0.12-linux-amd64.tar.gz
     - extract:
         archive: renderizer-2.0.12-linux-amd64.tar.gz
-    - move: 
-        source: renderizer
-        destination: renderizer-2.0.12-linux-amd64
   - platform: windows
     architecture: amd64
     tasks:
@@ -21,9 +18,6 @@ package:
         out: renderizer-2.0.12-windows-amd64.zip
     - extract:
         archive: renderizer-2.0.12-windows-amd64.zip
-    - move: 
-        source: renderizer.exe
-        destination: renderizer-2.0.12-windows-amd64.exe
   - platform: darwin
     architecture: amd64
     tasks:
@@ -32,7 +26,4 @@ package:
         out: renderizer-2.0.12-darwin-amd64.tar.gz
     - extract:
         archive: renderizer-2.0.12-darwin-amd64.tar.gz
-    - move: 
-        source: renderizer
-        destination: renderizer-2.0.12-darwin-amd64
   

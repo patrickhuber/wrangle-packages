@@ -23,7 +23,4 @@ package:
         out: pack-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
     - extract:
         archive: pack-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
-    - move: 
-        source: pack{{ if eq .platform "windows"}}.exe{{ end }}
-        destination: pack-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ if eq .platform "windows"}}.exe{{ end }}
   {{ end }}

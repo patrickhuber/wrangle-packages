@@ -18,12 +18,5 @@ package:
         out: wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
     - extract:
         archive: wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-    - move:
-        {{- $suffix := "" -}}
-        {{- if eq $platform "windows" -}}
-          {{- $suffix = ".exe" -}}
-        {{- end }}
-        source: wrangle{{ $suffix }}
-        destination: wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $suffix }}
   {{ end -}}
   {{ end }}

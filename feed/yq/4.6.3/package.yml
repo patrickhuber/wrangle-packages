@@ -12,7 +12,7 @@ package:
         archive: yq-4.6.3-darwinamd64.tar.gz
     - move:
         source: yq_darwin_amd64
-        destination: yq-4.6.3-darwin-amd64
+        destination: yq
   - platform: freebsd
     architecture: 386
     tasks:
@@ -23,7 +23,7 @@ package:
         archive: yq-4.6.3-freebsd386.tar.gz
     - move:
         source: yq_freebsd_386
-        destination: yq-4.6.3-freebsd-386
+        destination: yq
   - platform: freebsd
     architecture: amd64
     tasks:
@@ -34,7 +34,7 @@ package:
         archive: yq-4.6.3-freebsdamd64.tar.gz
     - move:
         source: yq_freebsd_amd64
-        destination: yq-4.6.3-freebsd-amd64
+        destination: yq
   - platform: linux
     architecture: amd64
     tasks:
@@ -45,7 +45,7 @@ package:
         archive: yq-4.6.3-linuxamd64.tar.gz
     - move:
         source: yq_linux_amd64
-        destination: yq-4.6.3-linux-amd64
+        destination: yq
   - platform: linux
     architecture: arm
     tasks:
@@ -56,7 +56,7 @@ package:
         archive: yq-4.6.3-linuxarm.tar.gz
     - move:
         source: yq_linux_arm
-        destination: yq-4.6.3-linux-arm
+        destination: yq
   - platform: linux
     architecture: arm64
     tasks:
@@ -67,7 +67,7 @@ package:
         archive: yq-4.6.3-linuxarm64.tar.gz
     - move:
         source: yq_linux_arm64
-        destination: yq-4.6.3-linux-arm64
+        destination: yq
   - platform: linux
     architecture: mips64
     tasks:
@@ -78,7 +78,7 @@ package:
         archive: yq-4.6.3-linuxmips64.tar.gz
     - move:
         source: yq_linux_mips64
-        destination: yq-4.6.3-linux-mips64
+        destination: yq
   - platform: linux
     architecture: mips64le
     tasks:
@@ -89,7 +89,7 @@ package:
         archive: yq-4.6.3-linuxmips64le.tar.gz
     - move:
         source: yq_linux_mips64le
-        destination: yq-4.6.3-linux-mips64le
+        destination: yq
   - platform: linux
     architecture: ppc64
     tasks:
@@ -100,7 +100,7 @@ package:
         archive: yq-4.6.3-linuxppc64.tar.gz
     - move:
         source: yq_linux_ppc64
-        destination: yq-4.6.3-linux-ppc64
+        destination: yq
   - platform: linux
     architecture: s390x
     tasks:
@@ -111,7 +111,7 @@ package:
         archive: yq-4.6.3-linuxs390x.tar.gz
     - move:
         source: yq_linux_s390x
-        destination: yq-4.6.3-linux-s390x
+        destination: yq
   - platform: netbsd
     architecture: 386
     tasks:
@@ -122,7 +122,7 @@ package:
         archive: yq-4.6.3-netbsd386.tar.gz
     - move:
         source: yq_netbsd_386
-        destination: yq-4.6.3-netbsd-386
+        destination: yq
   - platform: netbsd
     architecture: arm
     tasks:
@@ -133,7 +133,7 @@ package:
         archive: yq-4.6.3-netbsdarm.tar.gz
     - move:
         source: yq_netbsd_arm
-        destination: yq-4.6.3-netbsd-arm
+        destination: yq
   - platform: netbsd
     architecture: amd64
     tasks:
@@ -144,7 +144,7 @@ package:
         archive: yq-4.6.3-netbsdamd64.tar.gz
     - move:
         source: yq_netbsd_amd64
-        destination: yq-4.6.3-netbsd-amd64
+        destination: yq
   - platform: openbsd
     architecture: 386
     tasks:
@@ -155,7 +155,7 @@ package:
         archive: yq-4.6.3-openbsd386.tar.gz
     - move:
         source: yq_openbsd_386
-        destination: yq-4.6.3-openbsd-386
+        destination: yq
   - platform: openbsd
     architecture: amd64
     tasks:
@@ -166,7 +166,7 @@ package:
         archive: yq-4.6.3-openbsdamd64.tar.gz
     - move:
         source: yq_openbsd_amd64
-        destination: yq-4.6.3-openbsd-amd64
+        destination: yq
   - platform: windows
     architecture: 386
     tasks:
@@ -177,7 +177,7 @@ package:
         archive: yq-4.6.3-windows386.tar.gz
     - move:
         source: yq_windows_386.exe
-        destination: yq-4.6.3-windows-386.exe
+        destination: yq
   - platform: windows
     architecture: amd64
     tasks:
@@ -188,5 +188,5 @@ package:
         archive: yq-4.6.3-windowsamd64.tar.gz
     - move:
         source: yq_windows_amd64.exe
-        destination: yq-4.6.3-windows-amd64.exe
+        destination: yq
   

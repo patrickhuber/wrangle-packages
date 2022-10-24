@@ -18,6 +18,6 @@ package:
         archive: yq-{{ $.version }}-{{ $platform }}{{ $architecture }}{{ $archive }}
     - move:
         source: yq_{{ $platform }}_{{ $architecture }}{{ if eq "windows" $platform}}.exe{{ end }}
-        destination: yq-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ if eq "windows" $platform}}.exe{{ end }}
+        destination: yq{{ if eq "windows" $platform}}.exe{{ end }}
   {{ end -}}
   {{ end }}

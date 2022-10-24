@@ -8,9 +8,6 @@ targets:
       out: bbr-1.2.8-linux.tar
   - extract:
       archive: bbr-1.2.8-linux.tar
-  - move:
-      source: bbr
-      destination: bbr-1.2.8-linux
 - platform: darwin
   tasks:
   - download:
@@ -18,6 +15,3 @@ targets:
       out: bbr-1.2.8-linux.tar
   - extract:
       archive: bbr-1.2.8-darwin.tar
-  - move:
-      source: bbr-mac
-      destination: bbr-1.2.8-darwin
