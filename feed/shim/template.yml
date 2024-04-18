@@ -8,7 +8,7 @@ package:
   {{- $architecture := . }}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
-    tasks:
+    steps:
     {{- $archive := ".tar.gz" -}}
     {{- if eq $platform "windows" -}}
         {{- $archive = ".zip" -}}
