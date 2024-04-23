@@ -5,28 +5,34 @@ package:
   - platform: linux
     architecture: amd64
     steps:
-    - download:    
+    - action: download
+      with:
         url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-linux-amd64.tgz
         out: wrangle-0.9.0-linux-amd64.tgz
-    - extract:
+    - action: extract
+      with:
         archive: wrangle-0.9.0-linux-amd64.tgz
         out: wrangle
   - platform: darwin
     architecture: amd64
     steps:
-    - download:    
+    - action: download
+      with:
         url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-darwin-amd64.tgz
         out: wrangle-0.9.0-darwin-amd64.tgz
-    - extract:
+    - action: extract
+      with:
         archive: wrangle-0.9.0-darwin-amd64.tgz
         out: wrangle
   - platform: windows
     architecture: amd64
     steps:
-    - download:    
+    - action: download
+      with:
         url: https://github.com/patrickhuber/wrangle/releases/download/0.9.0/wrangle-windows-amd64.zip
         out: wrangle-0.9.0-windows-amd64.zip
-    - extract:
+    - action: extract
+      with:
         archive: wrangle-0.9.0-windows-amd64.zip
         out: wrangle.exe
   
