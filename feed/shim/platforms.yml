@@ -1,7 +1,11 @@
 platforms:
 - platform: linux
-  architectures: [amd64]
+  architectures: 
+  - amd64
 - platform: darwin
-  architectures: [amd64]
+  architectures: 
+  - amd64
+  - arm64
 - platform: windows
-  architectures: [amd64]  
+  architectures: 
+  - amd64 
