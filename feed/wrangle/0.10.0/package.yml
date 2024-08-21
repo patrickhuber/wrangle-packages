@@ -24,6 +24,17 @@ package:
       with:
         archive: wrangle-0.10.0-darwin-amd64.tar.gz
         out: wrangle
+  - platform: darwin
+    architecture: arm64
+    steps:
+    - action: download
+      with:
+        url: https://github.com/patrickhuber/wrangle/releases/download/0.10.0/wrangle-0.10.0-darwin-arm64.tar.gz
+        out: wrangle-0.10.0-darwin-arm64.tar.gz
+    - action: extract
+      with:
+        archive: wrangle-0.10.0-darwin-arm64.tar.gz
+        out: wrangle
   - platform: windows
     architecture: amd64
     steps:
