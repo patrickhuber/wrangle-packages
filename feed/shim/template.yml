@@ -7,12 +7,16 @@ package:
   {{- range .architectures -}}
   {{- $architecture := . }}
   - platform: {{ $platform }}
-    architecture: {{ $architecture }}
-    steps:
+    architecture: {{ $architecture }}    
     {{- $archive := ".tar.gz" -}}
+    {{- $extension := "" -}}
     {{- if eq $platform "windows" -}}
+        {{- $extension := ".exe" -}}
         {{- $archive = ".zip" -}}
     {{- end }}
+    executables: 
+    - "wrangle{{ $extension }}
+    steps:
     - download:    
         url: https://github.com/patrickhuber/shim/releases/download/v{{ $.version }}/shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
         out: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
