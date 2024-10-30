@@ -4,6 +4,8 @@ package:
   targets:
   - platform: linux
     architecture: amd64
+    executables: 
+    - shim
     steps:
     - action: download
       with:
@@ -14,6 +16,8 @@ package:
         archive: shim-0.0.1-linux-amd64.tar.gz
   - platform: darwin
     architecture: amd64
+    executables: 
+    - shim
     steps:
     - action: download
       with:
@@ -24,6 +28,8 @@ package:
         archive: shim-0.0.1-darwin-amd64.tar.gz
   - platform: darwin
     architecture: arm64
+    executables: 
+    - shim
     steps:
     - action: download
       with:
@@ -34,6 +40,8 @@ package:
         archive: shim-0.0.1-darwin-arm64.tar.gz
   - platform: windows
     architecture: amd64
+    executables: 
+    - shim.exe
     steps:
     - action: download
       with:
