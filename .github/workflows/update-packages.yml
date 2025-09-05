@@ -35,3 +35,19 @@ jobs:
       # Run through each package and process the template for the latest version in the resource
       - name: Update Latest Packages
         run: ./scripts/update-packages.sh
+
+      # create a branch for the changes based on the workflow run number
+      - name: Create Branch
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git checkout -b update-packages-${{ github.run_id }}
+          git add .
+          git commit -m "Update packages to latest versions"
+          git push --set-upstream origin update-packages-${{ github.run_id }}
+    
+      # Create a pull request for the changes
+      - name: Create Pull Request
+        run: gh pr create --title "Update packages to latest versions" --body "This PR updates the packages to their latest versions." --head update-packages-${{ github.run_id }} --base main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
