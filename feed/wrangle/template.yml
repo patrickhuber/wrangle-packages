@@ -9,7 +9,7 @@ package:
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
     {{- $extension := "" }}
-    {{- if eq .platform "windows" }}
+    {{- if eq $platform "windows" }}
        {{- $extension = ".exe" }}
     {{- end }}
     executables:
