@@ -5,18 +5,20 @@ package:
   {{- range .platforms -}}
   {{- $platform := .platform -}}
   {{- range .architectures -}}
-  {{- $architecture := . }}
+  {{- $architecture := . -}}
   - platform: {{ $platform }}
-    architecture: {{ $architecture }}    
+    architecture: {{ $architecture }}
+    {{- $extension := "" }}
+    {{- if eq $platform "windows" }}
+       {{- $extension = ".exe" }}
+    {{- end }}
+    executables:
+    - shim{{ $extension }}
+    steps:
     {{- $archive := ".tar.gz" -}}
-    {{- $extension := "" -}}
     {{- if eq $platform "windows" -}}
-        {{- $extension := ".exe" -}}
         {{- $archive = ".zip" -}}
     {{- end }}
-    executables: 
-    - "wrangle{{ $extension }}
-    steps:
     - download:    
         url: https://github.com/patrickhuber/shim/releases/download/v{{ $.version }}/shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
         out: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}

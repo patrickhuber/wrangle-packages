@@ -8,13 +8,15 @@ package:
   {{ $architecture := . -}}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
-    tasks:
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - crossplane{{ $extension }}
+    steps:
     - download:
-        {{- $suffix := "" -}}
-        {{- if eq $platform "windows" -}}
-          {{- $suffix = ".exe" -}}        
-        {{- end }}
-        url: https://releases.crossplane.io/stable/v{{ $.version }}/bin/{{ $platform }}_{{ $architecture}}/crossplane{{ $suffix }}
-        out: crossplane-v{{ $.version }}-{{ $platform }}-{{$architecture}}{{ $suffix }}
+        url: https://releases.crossplane.io/stable/v{{ $.version }}/bin/{{ $platform }}_{{ $architecture}}/crossplane{{ $extension }}
+        out: crossplane-v{{ $.version }}-{{ $platform }}-{{$architecture}}{{ $extension }}
   {{ end -}}
   {{ end }}

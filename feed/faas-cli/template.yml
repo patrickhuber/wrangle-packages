@@ -8,21 +8,23 @@ package:
   {{ $architecture := . -}}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
-    tasks:
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - faas-cli{{ $extension }}
+    steps:
     - download:
         {{- $suffix := "" -}}
-        {{- if eq .platform "windows" -}}
-          {{- $suffix = ".exe" -}}
-        {{- else if eq .platform "darwin" -}}
+        {{- if eq $platform "darwin" -}}
           {{- $suffix = "-darwin" -}}
-        {{- else if eq .architecture "arm64" -}}
+        {{- else if eq $architecture "arm64" -}}
           {{- $suffix = "-arm64" -}}
-        {{- else if eq .architecture "armv6" -}}
-          {{- $suffix = "-armhf" -}}
-        {{- else if eq .architecture "armv7" -}}
+        {{- else if or (eq $architecture "armv6") (eq $architecture "armv7") -}}
           {{- $suffix = "-armhf" -}}
         {{- end }}
         url: https://github.com/openfaas/faas-cli/releases/download/{{ $.version }}/faas-cli{{ $suffix }}
-        out: faas-cli-{{ .platform }}-{{ .architecture }}
+        out: faas-cli-{{ $platform }}-{{ $architecture }}{{ $extension }}
   {{ end -}}
   {{ end }}

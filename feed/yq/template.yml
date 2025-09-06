@@ -6,18 +6,26 @@ package:
   {{ $platform := .platform -}}
   {{ range .architectures -}}
   {{ $architecture := . -}}
-  {{ $archive := ".tar.gz" -}}
-  {{ if eq "windows" $platform }}{{ $archive := ".zip" }}{{end -}}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
-    tasks:
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+       {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - yq{{ $extension }}
+    steps:
+    {{- $archive := ".tar.gz" -}}
+    {{- if eq $platform "windows" -}}
+        {{- $archive = ".zip" -}}
+    {{- end }}
     - download:
         url: https://github.com/mikefarah/yq/releases/download/v{{ $.version }}/yq_{{ $platform }}_{{ $architecture }}{{ $archive }}
-        out: yq-{{ $.version }}-{{ $platform }}{{ $architecture }}{{ $archive }}
+        out: yq-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
     - extract:
-        archive: yq-{{ $.version }}-{{ $platform }}{{ $architecture }}{{ $archive }}
+        archive: yq-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
     - move:
-        source: yq_{{ $platform }}_{{ $architecture }}{{ if eq "windows" $platform}}.exe{{ end }}
-        destination: yq{{ if eq "windows" $platform}}.exe{{ end }}
+        source: yq_{{ $platform }}_{{ $architecture }}{{ $extension }}
+        destination: yq{{ $extension }}
   {{ end -}}
   {{ end }}

@@ -3,24 +3,34 @@ package:
   version: {{ .version }}
   targets:
   {{ range .platforms -}}
-  - platform: {{ .platform }}
-    architecture: {{ .architecture }}
-    tasks:    
-    {{- $extension := ".tgz" }}
-    {{- if eq .platform "windows" }}
-       {{- $extension = ".zip" }}
+  {{ $platform := .platform -}}
+  {{ range .architectures -}}
+  {{ $architecture := . -}}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
     {{- end }}
-    {{- $suffix := "" }}
-    {{- if eq .architecture "arm64" }}
-      {{- $suffix = "-arm64" }}
+    executables:
+    - pack{{ $extension }}
+    steps:
+    {{- $archive := ".tgz" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $archive = ".zip" -}}
+    {{- end }}
+    {{- $suffix := "" -}}
+    {{- if eq $architecture "arm64" -}}
+      {{- $suffix = "-arm64" -}}
     {{- end}}
-    {{- $os := .platform }}
-    {{- if eq .platform "darwin" }}
-      {{- $os = "macos"}}
+    {{- $os := $platform -}}
+    {{- if eq $platform "darwin" -}}
+      {{- $os = "macos" -}}
     {{- end }}
     - download:
-        url: https://github.com/buildpacks/pack/releases/download/v{{ $.version }}/pack-v{{ $.version }}-{{ $os }}{{ $suffix }}{{ $extension }}
-        out: pack-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
+        url: https://github.com/buildpacks/pack/releases/download/v{{ $.version }}/pack-v{{ $.version }}-{{ $os }}{{ $suffix }}{{ $archive }}
+        out: pack-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
     - extract:
-        archive: pack-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
+        archive: pack-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+  {{ end -}}
   {{ end }}

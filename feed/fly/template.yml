@@ -3,18 +3,26 @@ package:
   version: {{ .version }}
   targets:
   {{ range .platforms -}}
-  - platform: {{ .platform }}
-    architecture: {{ .architecture }}
-    tasks:
+  {{ $platform := .platform -}}
+  {{ range .architectures -}}
+  {{ $architecture := . -}}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - fly{{ $extension }}
+    steps:
+    {{- $archive := ".tgz" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $archive = ".zip" -}}
+    {{- end }}
     - download:
-        {{- $archive := ".tgz" -}}
-        {{- $suffix := "" }}      
-        {{- if eq .platform "windows" -}}
-          {{- $archive = ".zip" -}}
-          {{- $suffix = ".exe" -}}        
-        {{- end }}
-        url: https://github.com/concourse/concourse/releases/download/v{{ $.version }}/fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $archive }}
-        out: fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $archive }}
+        url: https://github.com/concourse/concourse/releases/download/v{{ $.version }}/fly-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+        out: fly-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
     - extract:
-        archive: fly-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $archive }}
+        archive: fly-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+  {{ end -}}
   {{ end }}
