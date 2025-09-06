@@ -2,10 +2,10 @@ package:
   name: fly
   version: {{ .version }}
   targets:
-  {{ range .platforms -}}
-  {{ $platform := .platform -}}
-  {{ range .architectures -}}
-  {{ $architecture := . -}}
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
     {{- $extension := "" -}}
@@ -19,10 +19,12 @@ package:
     {{- if eq $platform "windows" -}}
       {{- $archive = ".zip" -}}
     {{- end }}
-    - download:
+    - action: download
+      with:
         url: https://github.com/concourse/concourse/releases/download/v{{ $.version }}/fly-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
         out: fly-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-    - extract:
+    - action: extract
+      with:
         archive: fly-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-  {{ end -}}
-  {{ end }}
+  {{- end }}
+  {{- end }}

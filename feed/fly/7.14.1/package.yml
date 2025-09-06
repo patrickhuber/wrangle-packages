@@ -7,29 +7,35 @@ package:
     executables:
     - fly
     steps:
-    - download:
+    - action: download
+      with:
         url: https://github.com/concourse/concourse/releases/download/v7.14.1/fly-7.14.1-darwin-amd64.tgz
         out: fly-7.14.1-darwin-amd64.tgz
-    - extract:
+    - action: extract
+      with:
         archive: fly-7.14.1-darwin-amd64.tgz
   - platform: linux
     architecture: amd64
     executables:
     - fly
     steps:
-    - download:
+    - action: download
+      with:
         url: https://github.com/concourse/concourse/releases/download/v7.14.1/fly-7.14.1-linux-amd64.tgz
         out: fly-7.14.1-linux-amd64.tgz
-    - extract:
+    - action: extract
+      with:
         archive: fly-7.14.1-linux-amd64.tgz
   - platform: windows
     architecture: amd64
     executables:
     - fly.exe
     steps:
-    - download:
+    - action: download
+      with:
         url: https://github.com/concourse/concourse/releases/download/v7.14.1/fly-7.14.1-windows-amd64.zip
         out: fly-7.14.1-windows-amd64.zip
-    - extract:
+    - action: extract
+      with:
         archive: fly-7.14.1-windows-amd64.zip
   

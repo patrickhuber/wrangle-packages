@@ -4,26 +4,38 @@ package:
   targets:
   - platform: darwin
     architecture: amd64
-    tasks:
-    - download:
+    executables:
+    - fly
+    steps:
+    - action: download
+      with:
         url: https://github.com/concourse/concourse/releases/download/v7.0.0/fly-7.0.0-darwin-amd64.tgz
         out: fly-7.0.0-darwin-amd64.tgz
-    - extract:
+    - action: extract
+      with:
         archive: fly-7.0.0-darwin-amd64.tgz
   - platform: linux
     architecture: amd64
-    tasks:
-    - download:
+    executables:
+    - fly
+    steps:
+    - action: download
+      with:
         url: https://github.com/concourse/concourse/releases/download/v7.0.0/fly-7.0.0-linux-amd64.tgz
         out: fly-7.0.0-linux-amd64.tgz
-    - extract:
+    - action: extract
+      with:
         archive: fly-7.0.0-linux-amd64.tgz
   - platform: windows
     architecture: amd64
-    tasks:
-    - download:
+    executables:
+    - fly.exe
+    steps:
+    - action: download
+      with:
         url: https://github.com/concourse/concourse/releases/download/v7.0.0/fly-7.0.0-windows-amd64.zip
         out: fly-7.0.0-windows-amd64.zip
-    - extract:
+    - action: extract
+      with:
         archive: fly-7.0.0-windows-amd64.zip
   
