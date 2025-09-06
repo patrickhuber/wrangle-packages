@@ -2,10 +2,10 @@ package:
   name: renderizer
   version: {{ .version }}
   targets:
-  {{ range .platforms -}}
-  {{ $platform := .platform -}}
-  {{ range .architectures -}}
-  {{ $architecture := . -}}
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
     {{- $extension := "" -}}
@@ -19,10 +19,12 @@ package:
     {{- if eq $platform "windows" -}}
       {{- $archive = ".zip" -}}
     {{- end }}
-    - download:
+    - action: download
+      with:
         url: https://github.com/gomatic/renderizer/releases/download/v{{ $.version }}/renderizer_{{ $platform }}_x86_64{{ $archive }}
         out: renderizer-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-    - extract:
+    - action: extract
+      with:
         archive: renderizer-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-  {{ end -}}
-  {{ end }}
+  {{- end -}}
+  {{- end }}

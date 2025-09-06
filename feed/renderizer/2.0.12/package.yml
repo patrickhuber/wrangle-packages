@@ -4,26 +4,31 @@ package:
   targets:
   - platform: linux
     architecture: amd64
-    tasks:
-    - download:
+    steps:
+    - action: download
+      with:
         url: https://github.com/gomatic/renderizer/releases/download/v2.0.12/renderizer_linux_x86_64.tar.gz
         out: renderizer-2.0.12-linux-amd64.tar.gz
-    - extract:
+    - action: extract
+      with:
         archive: renderizer-2.0.12-linux-amd64.tar.gz
   - platform: windows
     architecture: amd64
-    tasks:
-    - download:
+    steps:
+    - action: download
+      with:
         url: https://github.com/gomatic/renderizer/releases/download/v2.0.12/renderizer_windows_x86_64.zip
         out: renderizer-2.0.12-windows-amd64.zip
-    - extract:
+    - action: extract
+      with:
         archive: renderizer-2.0.12-windows-amd64.zip
   - platform: darwin
     architecture: amd64
-    tasks:
-    - download:
+    steps:
+    - action: download
+      with:
         url: https://github.com/gomatic/renderizer/releases/download/v2.0.12/renderizer_darwin_x86_64.tar.gz
         out: renderizer-2.0.12-darwin-amd64.tar.gz
-    - extract:
+    - action: extract
+      with:
         archive: renderizer-2.0.12-darwin-amd64.tar.gz
-  
