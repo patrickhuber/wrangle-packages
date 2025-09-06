@@ -1,0 +1,226 @@
+package: 
+  name: yq
+  version: 4.47.1
+  targets:
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_darwin_amd64.tar.gz
+        out: yq-4.47.1-darwin-amd64.tar.gz
+    - extract:
+        archive: yq-4.47.1-darwin-amd64.tar.gz
+    - move:
+        source: yq_darwin_amd64
+        destination: yq
+  - platform: freebsd
+    architecture: 386
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_freebsd_386.tar.gz
+        out: yq-4.47.1-freebsd-386.tar.gz
+    - extract:
+        archive: yq-4.47.1-freebsd-386.tar.gz
+    - move:
+        source: yq_freebsd_386
+        destination: yq
+  - platform: freebsd
+    architecture: amd64
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_freebsd_amd64.tar.gz
+        out: yq-4.47.1-freebsd-amd64.tar.gz
+    - extract:
+        archive: yq-4.47.1-freebsd-amd64.tar.gz
+    - move:
+        source: yq_freebsd_amd64
+        destination: yq
+  - platform: linux
+    architecture: amd64
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_amd64.tar.gz
+        out: yq-4.47.1-linux-amd64.tar.gz
+    - extract:
+        archive: yq-4.47.1-linux-amd64.tar.gz
+    - move:
+        source: yq_linux_amd64
+        destination: yq
+  - platform: linux
+    architecture: arm
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_arm.tar.gz
+        out: yq-4.47.1-linux-arm.tar.gz
+    - extract:
+        archive: yq-4.47.1-linux-arm.tar.gz
+    - move:
+        source: yq_linux_arm
+        destination: yq
+  - platform: linux
+    architecture: arm64
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_arm64.tar.gz
+        out: yq-4.47.1-linux-arm64.tar.gz
+    - extract:
+        archive: yq-4.47.1-linux-arm64.tar.gz
+    - move:
+        source: yq_linux_arm64
+        destination: yq
+  - platform: linux
+    architecture: mips64
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_mips64.tar.gz
+        out: yq-4.47.1-linux-mips64.tar.gz
+    - extract:
+        archive: yq-4.47.1-linux-mips64.tar.gz
+    - move:
+        source: yq_linux_mips64
+        destination: yq
+  - platform: linux
+    architecture: mips64le
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_mips64le.tar.gz
+        out: yq-4.47.1-linux-mips64le.tar.gz
+    - extract:
+        archive: yq-4.47.1-linux-mips64le.tar.gz
+    - move:
+        source: yq_linux_mips64le
+        destination: yq
+  - platform: linux
+    architecture: ppc64
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_ppc64.tar.gz
+        out: yq-4.47.1-linux-ppc64.tar.gz
+    - extract:
+        archive: yq-4.47.1-linux-ppc64.tar.gz
+    - move:
+        source: yq_linux_ppc64
+        destination: yq
+  - platform: linux
+    architecture: s390x
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_s390x.tar.gz
+        out: yq-4.47.1-linux-s390x.tar.gz
+    - extract:
+        archive: yq-4.47.1-linux-s390x.tar.gz
+    - move:
+        source: yq_linux_s390x
+        destination: yq
+  - platform: netbsd
+    architecture: 386
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_netbsd_386.tar.gz
+        out: yq-4.47.1-netbsd-386.tar.gz
+    - extract:
+        archive: yq-4.47.1-netbsd-386.tar.gz
+    - move:
+        source: yq_netbsd_386
+        destination: yq
+  - platform: netbsd
+    architecture: arm
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_netbsd_arm.tar.gz
+        out: yq-4.47.1-netbsd-arm.tar.gz
+    - extract:
+        archive: yq-4.47.1-netbsd-arm.tar.gz
+    - move:
+        source: yq_netbsd_arm
+        destination: yq
+  - platform: netbsd
+    architecture: amd64
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_netbsd_amd64.tar.gz
+        out: yq-4.47.1-netbsd-amd64.tar.gz
+    - extract:
+        archive: yq-4.47.1-netbsd-amd64.tar.gz
+    - move:
+        source: yq_netbsd_amd64
+        destination: yq
+  - platform: openbsd
+    architecture: 386
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_openbsd_386.tar.gz
+        out: yq-4.47.1-openbsd-386.tar.gz
+    - extract:
+        archive: yq-4.47.1-openbsd-386.tar.gz
+    - move:
+        source: yq_openbsd_386
+        destination: yq
+  - platform: openbsd
+    architecture: amd64
+    executables:
+    - yq
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_openbsd_amd64.tar.gz
+        out: yq-4.47.1-openbsd-amd64.tar.gz
+    - extract:
+        archive: yq-4.47.1-openbsd-amd64.tar.gz
+    - move:
+        source: yq_openbsd_amd64
+        destination: yq
+  - platform: windows
+    architecture: 386
+    executables:
+    - yq.exe
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_windows_386.zip
+        out: yq-4.47.1-windows-386.zip
+    - extract:
+        archive: yq-4.47.1-windows-386.zip
+    - move:
+        source: yq_windows_386.exe
+        destination: yq.exe
+  - platform: windows
+    architecture: amd64
+    executables:
+    - yq.exe
+    steps:
+    - download:
+        url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_windows_amd64.zip
+        out: yq-4.47.1-windows-amd64.zip
+    - extract:
+        archive: yq-4.47.1-windows-amd64.zip
+    - move:
+        source: yq_windows_amd64.exe
+        destination: yq.exe
+  

@@ -1,0 +1,45 @@
+package:
+  name: pack
+  version: 0.38.2
+  targets:
+  - platform: linux
+    architecture: amd64
+    executables:
+    - pack
+    steps:
+    - download:
+        url: https://github.com/buildpacks/pack/releases/download/v0.38.2/pack-v0.38.2-linux.tgz
+        out: pack-0.38.2-linux-amd64.tgz
+    - extract:
+        archive: pack-0.38.2-linux-amd64.tgz
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - pack
+    steps:
+    - download:
+        url: https://github.com/buildpacks/pack/releases/download/v0.38.2/pack-v0.38.2-macos.tgz
+        out: pack-0.38.2-darwin-amd64.tgz
+    - extract:
+        archive: pack-0.38.2-darwin-amd64.tgz
+  - platform: darwin
+    architecture: arm64
+    executables:
+    - pack
+    steps:
+    - download:
+        url: https://github.com/buildpacks/pack/releases/download/v0.38.2/pack-v0.38.2-macos-arm64.tgz
+        out: pack-0.38.2-darwin-arm64.tgz
+    - extract:
+        archive: pack-0.38.2-darwin-arm64.tgz
+  - platform: windows
+    architecture: amd64
+    executables:
+    - pack.exe
+    steps:
+    - download:
+        url: https://github.com/buildpacks/pack/releases/download/v0.38.2/pack-v0.38.2-windows.zip
+        out: pack-0.38.2-windows-amd64.zip
+    - extract:
+        archive: pack-0.38.2-windows-amd64.zip
+  
