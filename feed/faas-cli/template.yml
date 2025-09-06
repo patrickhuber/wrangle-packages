@@ -2,10 +2,10 @@ package:
   name: faas-cli
   version: {{ .version }}
   targets:
-  {{ range .platforms -}}
-  {{ $platform := .platform -}}
-  {{ range .architectures -}}
-  {{ $architecture := . -}}
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
     {{- $extension := "" -}}
@@ -15,7 +15,8 @@ package:
     executables:
     - faas-cli{{ $extension }}
     steps:
-    - download:
+    - action: download
+      with:
         {{- $suffix := "" -}}
         {{- if eq $platform "darwin" -}}
           {{- $suffix = "-darwin" -}}
@@ -26,5 +27,5 @@ package:
         {{- end }}
         url: https://github.com/openfaas/faas-cli/releases/download/{{ $.version }}/faas-cli{{ $suffix }}
         out: faas-cli-{{ $platform }}-{{ $architecture }}{{ $extension }}
-  {{ end -}}
-  {{ end }}
+  {{- end }}
+  {{- end }}
