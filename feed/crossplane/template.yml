@@ -2,10 +2,10 @@ package:
   name: crossplane
   version: {{ .version }}
   targets:
-  {{ range .platforms -}}
-  {{ $platform := .platform -}}
-  {{ range .architectures -}}
-  {{ $architecture := . -}}
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
     {{- $extension := "" -}}
@@ -15,8 +15,9 @@ package:
     executables:
     - crossplane{{ $extension }}
     steps:
-    - download:
+    - action: download
+      with:
         url: https://releases.crossplane.io/stable/v{{ $.version }}/bin/{{ $platform }}_{{ $architecture}}/crossplane{{ $extension }}
         out: crossplane-v{{ $.version }}-{{ $platform }}-{{$architecture}}{{ $extension }}
-  {{ end -}}
-  {{ end }}
+  {{- end }}
+  {{- end }}
