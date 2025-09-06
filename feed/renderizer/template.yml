@@ -2,17 +2,29 @@ package:
   name: renderizer
   version: {{ .version }}
   targets:
-  {{ range .platforms -}}
-  - platform: {{ .platform }}
-    architecture: {{ .architecture }}
-    tasks:    
-    {{- $extension := ".tar.gz" }}
-    {{- if eq .platform "windows" }}
-       {{- $extension = ".zip" }}
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
     {{- end }}
-    - download:
-        url: https://github.com/gomatic/renderizer/releases/download/v{{ $.version }}/renderizer_{{ .platform }}_x86_64{{ $extension }}
-        out: renderizer-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
-    - extract:
-        archive: renderizer-{{ $.version }}-{{ .platform }}-{{ .architecture }}{{ $extension }}
-  {{ end }}
+    executables:
+    - renderizer{{ $extension }}
+    steps:
+    {{- $archive := ".tar.gz" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $archive = ".zip" -}}
+    {{- end }}
+    - action: download
+      with:
+        url: https://github.com/gomatic/renderizer/releases/download/v{{ $.version }}/renderizer_{{ $platform }}_x86_64{{ $archive }}
+        out: renderizer-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+    - action: extract
+      with:
+        archive: renderizer-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+  {{- end -}}
+  {{- end }}

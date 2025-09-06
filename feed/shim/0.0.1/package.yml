@@ -24,7 +24,7 @@ package:
         url: https://github.com/patrickhuber/shim/releases/download/v0.0.1/shim-0.0.1-darwin-amd64.tar.gz
         out: shim-0.0.1-darwin-amd64.tar.gz
     - action: extract
-      with: 
+      with:
         archive: shim-0.0.1-darwin-amd64.tar.gz
   - platform: darwin
     architecture: arm64

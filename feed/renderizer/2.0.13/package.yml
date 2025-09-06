@@ -1,0 +1,40 @@
+package:
+  name: renderizer
+  version: 2.0.13
+  targets:
+  - platform: linux
+    architecture: amd64
+    executables:
+    - renderizer
+    steps:
+    - action: download
+      with:
+        url: https://github.com/gomatic/renderizer/releases/download/v2.0.13/renderizer_linux_x86_64.tar.gz
+        out: renderizer-2.0.13-linux-amd64.tar.gz
+    - action: extract
+      with:
+        archive: renderizer-2.0.13-linux-amd64.tar.gz
+  - platform: windows
+    architecture: amd64
+    executables:
+    - renderizer.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/gomatic/renderizer/releases/download/v2.0.13/renderizer_windows_x86_64.zip
+        out: renderizer-2.0.13-windows-amd64.zip
+    - action: extract
+      with:
+        archive: renderizer-2.0.13-windows-amd64.zip
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - renderizer
+    steps:
+    - action: download
+      with:
+        url: https://github.com/gomatic/renderizer/releases/download/v2.0.13/renderizer_darwin_x86_64.tar.gz
+        out: renderizer-2.0.13-darwin-amd64.tar.gz
+    - action: extract
+      with:
+        archive: renderizer-2.0.13-darwin-amd64.tar.gz

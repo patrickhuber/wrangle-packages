@@ -2,19 +2,22 @@ package:
   name: crossplane
   version: {{ .version }}
   targets:
-  {{ range .platforms -}}
-  {{ $platform := .platform -}}
-  {{ range .architectures -}}
-  {{ $architecture := . -}}
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
-    tasks:
-    - download:
-        {{- $suffix := "" -}}
-        {{- if eq $platform "windows" -}}
-          {{- $suffix = ".exe" -}}        
-        {{- end }}
-        url: https://releases.crossplane.io/stable/v{{ $.version }}/bin/{{ $platform }}_{{ $architecture}}/crossplane{{ $suffix }}
-        out: crossplane-v{{ $.version }}-{{ $platform }}-{{$architecture}}{{ $suffix }}
-  {{ end -}}
-  {{ end }}
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - crossplane{{ $extension }}
+    steps:
+    - action: download
+      with:
+        url: https://releases.crossplane.io/stable/v{{ $.version }}/bin/{{ $platform }}_{{ $architecture}}/crossplane{{ $extension }}
+        out: crossplane-v{{ $.version }}-{{ $platform }}-{{$architecture}}{{ $extension }}
+  {{- end }}
+  {{- end }}

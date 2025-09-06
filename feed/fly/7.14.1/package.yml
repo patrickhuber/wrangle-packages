@@ -1,0 +1,41 @@
+package:
+  name: fly
+  version: 7.14.1
+  targets:
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - fly
+    steps:
+    - action: download
+      with:
+        url: https://github.com/concourse/concourse/releases/download/v7.14.1/fly-7.14.1-darwin-amd64.tgz
+        out: fly-7.14.1-darwin-amd64.tgz
+    - action: extract
+      with:
+        archive: fly-7.14.1-darwin-amd64.tgz
+  - platform: linux
+    architecture: amd64
+    executables:
+    - fly
+    steps:
+    - action: download
+      with:
+        url: https://github.com/concourse/concourse/releases/download/v7.14.1/fly-7.14.1-linux-amd64.tgz
+        out: fly-7.14.1-linux-amd64.tgz
+    - action: extract
+      with:
+        archive: fly-7.14.1-linux-amd64.tgz
+  - platform: windows
+    architecture: amd64
+    executables:
+    - fly.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/concourse/concourse/releases/download/v7.14.1/fly-7.14.1-windows-amd64.zip
+        out: fly-7.14.1-windows-amd64.zip
+    - action: extract
+      with:
+        archive: fly-7.14.1-windows-amd64.zip
+  

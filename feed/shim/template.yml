@@ -1,26 +1,30 @@
-package: 
+package:
   name: shim
   version: {{ .version }}
   targets:
-  {{- range .platforms -}}
-  {{- $platform := .platform -}}
-  {{- range .architectures -}}
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
   {{- $architecture := . }}
   - platform: {{ $platform }}
-    architecture: {{ $architecture }}    
-    {{- $archive := ".tar.gz" -}}
+    architecture: {{ $architecture }}
     {{- $extension := "" -}}
     {{- if eq $platform "windows" -}}
-        {{- $extension := ".exe" -}}
-        {{- $archive = ".zip" -}}
+      {{- $extension = ".exe" -}}
     {{- end }}
-    executables: 
-    - "wrangle{{ $extension }}
+    executables:
+    - shim{{ $extension }}
     steps:
-    - download:    
+    {{- $archive := ".tar.gz" -}}
+    {{- if eq $platform "windows" -}}
+        {{- $archive = ".zip" -}}
+      {{- end }}
+    - action: download
+      with:
         url: https://github.com/patrickhuber/shim/releases/download/v{{ $.version }}/shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
         out: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-    - extract:
+    - action: extract
+      with:
         archive: shim-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-  {{- end -}}
-  {{- end -}}
+  {{- end }}
+  {{- end }}

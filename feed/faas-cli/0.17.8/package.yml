@@ -1,6 +1,6 @@
 package:
   name: faas-cli
-  version: 0.13.9
+  version: 0.17.8
   targets:
   - platform: linux
     architecture: amd64
@@ -9,7 +9,7 @@ package:
     steps:
     - action: download
       with:
-        url: https://github.com/openfaas/faas-cli/releases/download/0.13.9/faas-cli
+        url: https://github.com/openfaas/faas-cli/releases/download/0.17.8/faas-cli
         out: faas-cli-linux-amd64
   - platform: linux
     architecture: arm64
@@ -18,7 +18,7 @@ package:
     steps:
     - action: download
       with:
-        url: https://github.com/openfaas/faas-cli/releases/download/0.13.9/faas-cli-arm64
+        url: https://github.com/openfaas/faas-cli/releases/download/0.17.8/faas-cli-arm64
         out: faas-cli-linux-arm64
   - platform: linux
     architecture: armv6
@@ -27,7 +27,7 @@ package:
     steps:
     - action: download
       with:
-        url: https://github.com/openfaas/faas-cli/releases/download/0.13.9/faas-cli-armhf
+        url: https://github.com/openfaas/faas-cli/releases/download/0.17.8/faas-cli-armhf
         out: faas-cli-linux-armv6
   - platform: linux
     architecture: armv7
@@ -36,7 +36,7 @@ package:
     steps:
     - action: download
       with:
-        url: https://github.com/openfaas/faas-cli/releases/download/0.13.9/faas-cli-armhf
+        url: https://github.com/openfaas/faas-cli/releases/download/0.17.8/faas-cli-armhf
         out: faas-cli-linux-armv7
   - platform: windows
     architecture: amd64
@@ -45,8 +45,8 @@ package:
     steps:
     - action: download
       with:
-        url: https://github.com/openfaas/faas-cli/releases/download/0.13.9/faas-cli.exe
-        out: faas-cli-windows-amd64
+        url: https://github.com/openfaas/faas-cli/releases/download/0.17.8/faas-cli.exe
+        out: faas-cli-windows-amd64.exe
   - platform: darwin
     architecture: amd64
     executables:
@@ -54,6 +54,6 @@ package:
     steps:
     - action: download
       with:
-        url: https://github.com/openfaas/faas-cli/releases/download/0.13.9/faas-cli-darwin
+        url: https://github.com/openfaas/faas-cli/releases/download/0.17.8/faas-cli-darwin
         out: faas-cli-darwin-amd64
   
