@@ -2,10 +2,10 @@ package:
   name: pack
   version: {{ .version }}
   targets:
-  {{ range .platforms -}}
-  {{ $platform := .platform -}}
-  {{ range .architectures -}}
-  {{ $architecture := . -}}
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
   - platform: {{ $platform }}
     architecture: {{ $architecture }}
     {{- $extension := "" -}}
@@ -27,10 +27,12 @@ package:
     {{- if eq $platform "darwin" -}}
       {{- $os = "macos" -}}
     {{- end }}
-    - download:
+    - action: download
+      with:
         url: https://github.com/buildpacks/pack/releases/download/v{{ $.version }}/pack-v{{ $.version }}-{{ $os }}{{ $suffix }}{{ $archive }}
         out: pack-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-    - extract:
+    - action: extract
+      with:
         archive: pack-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-  {{ end -}}
-  {{ end }}
+  {{- end }}
+  {{- end }}
