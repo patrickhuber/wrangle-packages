@@ -1,0 +1,46 @@
+package: 
+  name: wrangle
+  version: 0.10.4
+  targets:
+  - platform: linux
+    architecture: amd64
+    executables:
+    - wrangle
+    steps:
+    - download:    
+        url: https://github.com/patrickhuber/wrangle/releases/download/v0.10.4/wrangle-0.10.4-linux-amd64.tar.gz
+        out: wrangle-0.10.4-linux-amd64.tar.gz
+    - extract:
+        archive: wrangle-0.10.4-linux-amd64.tar.gz
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - wrangle
+    steps:
+    - download:    
+        url: https://github.com/patrickhuber/wrangle/releases/download/v0.10.4/wrangle-0.10.4-darwin-amd64.tar.gz
+        out: wrangle-0.10.4-darwin-amd64.tar.gz
+    - extract:
+        archive: wrangle-0.10.4-darwin-amd64.tar.gz
+  - platform: darwin
+    architecture: arm64
+    executables:
+    - wrangle
+    steps:
+    - download:    
+        url: https://github.com/patrickhuber/wrangle/releases/download/v0.10.4/wrangle-0.10.4-darwin-arm64.tar.gz
+        out: wrangle-0.10.4-darwin-arm64.tar.gz
+    - extract:
+        archive: wrangle-0.10.4-darwin-arm64.tar.gz
+  - platform: windows
+    architecture: amd64
+    executables:
+    - wrangle.exe
+    steps:
+    - download:    
+        url: https://github.com/patrickhuber/wrangle/releases/download/v0.10.4/wrangle-0.10.4-windows-amd64.zip
+        out: wrangle-0.10.4-windows-amd64.zip
+    - extract:
+        archive: wrangle-0.10.4-windows-amd64.zip
+  
+
