@@ -19,10 +19,12 @@ package:
     {{- if eq $platform "windows" -}}
         {{- $archive = ".zip" -}}
     {{- end }}
-    - download:    
+    - action: download
+      with:
         url: https://github.com/patrickhuber/wrangle/releases/download/v{{ $.version }}/wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
         out: wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
-    - extract:
+    - action: extract
+      with:
         archive: wrangle-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
   {{ end -}}
   {{ end }}
