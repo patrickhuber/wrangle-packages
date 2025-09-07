@@ -25,7 +25,7 @@ package:
         {{- else if and (eq $platform "linux") (eq $architecture "amd64") -}}
           {{- $asset = "jq-linux64" -}}
         {{- end }}
-        url: https://github.com/stedolan/jq/releases/download/jq-{{ $.version }}/{{ $asset }}
-  out: jq{{ $extension }}
+        url: https://github.com/jqlang/jq/releases/download/jq-{{ $.version }}/{{ $asset }}
+        out: jq{{ $extension }}
   {{- end }}
   {{- end }}
