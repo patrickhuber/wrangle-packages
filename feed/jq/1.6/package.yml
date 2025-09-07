@@ -1,0 +1,31 @@
+package:
+  name: jq
+  version: 1.6
+  targets:
+  - platform: linux
+    architecture: amd64
+    executables:
+    - jq
+    steps:
+    - action: download
+      with:
+        url: https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+        out: jq
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - jq
+    steps:
+    - action: download
+      with:
+        url: https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64
+        out: jq
+  - platform: windows
+    architecture: amd64
+    executables:
+    - jq.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe
+        out: jq.exe
