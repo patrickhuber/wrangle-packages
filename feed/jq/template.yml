@@ -1,0 +1,31 @@
+package:
+  name: jq
+  version: {{ .version }}
+  targets:
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - jq{{ $extension }}
+    steps:
+    - action: download
+      with:
+        {{- $asset := "" -}}
+        {{- if and (eq $platform "windows") (eq $architecture "amd64") -}}
+          {{- $asset = "jq-win64.exe" -}}
+        {{- else if and (eq $platform "darwin") (eq $architecture "amd64") -}}
+          {{- $asset = "jq-osx-amd64" -}}
+        {{- else if and (eq $platform "linux") (eq $architecture "amd64") -}}
+          {{- $asset = "jq-linux64" -}}
+        {{- end }}
+        url: https://github.com/jqlang/jq/releases/download/jq-{{ $.version }}/{{ $asset }}
+        out: jq{{ $extension }}
+  {{- end }}
+  {{- end }}
