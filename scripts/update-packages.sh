@@ -67,6 +67,8 @@ do
         continue;
     fi
     # filter versions to only those newer than current version using semantic version sorting
+    # this works by: combining current+all versions, sorting semantically, finding current version position, 
+    # then taking everything after it (tail -n +2 skips the current version itself)
     versions_to_generate=$(echo -e "$current_version\n$all_versions" | sort -V -u | sed -n "/$current_version/,\$p" | tail -n +2)
   else
     # if no state file, generate only the latest version
@@ -75,7 +77,7 @@ do
   fi
 
   # generate package.yml for each version
-  echo "$versions_to_generate" | while read version; do
+  while read version; do
     if [ -z "$version" ]; then
       continue
     fi
@@ -92,7 +94,7 @@ do
 
     # run the template to generate the package file
     renderizer --settings=$package_dir/platforms.yml --settings=$package_dir/resource.yml --settings=$package_dir/state.yml $package_dir/template.yml > $package_version_dir/package.yml
-  done
+  done <<< "$versions_to_generate"
   
   # write the final latest version to state file
   export version=$(echo ${github_release_latest})
