@@ -40,8 +40,17 @@ do
     github_release_version_regex=".*"
   fi
 
-  # get the latest version and use the version regex to filter (the meaning of this is meant to allow pinning, so rethinking may be necessary)
-  github_release_latest=$(curl -s https://api.github.com/repos/$github_release_owner/$github_release_repository/releases/latest | jq .tag_name -r | grep -E -o "${github_release_version_regex}")
+  # get all releases from github and extract versions that match the version regex
+  all_versions=$(curl -s https://api.github.com/repos/$github_release_owner/$github_release_repository/releases | jq -r '.[].tag_name' | grep -E -o "${github_release_version_regex}" | sort -V)
+  
+  if [ -z "$all_versions" ]; then
+    echo "skip: $package, no github releases found or unable to parse versions"
+    continue;
+  fi
+  
+  # get the latest version from all versions
+  github_release_latest=$(echo "$all_versions" | tail -1)
+  
   if [ "$github_release_latest" == "" ]; then
     echo "skip: $package, github release version unable to be parsed with expression '$github_release_version_regex'"
     continue;
@@ -50,25 +59,42 @@ do
   # check for the state file 
   state_file="$package_dir/state.yml"            
 
+  # determine the starting version
   if [ -f "$state_file" ]; then
-    version=$(yq e '.version' $state_file)
-    if [ "$version" == "$github_release_latest" ]; then
+    current_version=$(yq e '.version' $state_file)
+    if [ "$current_version" == "$github_release_latest" ]; then
         echo "skip: $package, on latest version"
         continue;
     fi
+    # filter versions to only those newer than current version using semantic version sorting
+    versions_to_generate=$(echo -e "$current_version\n$all_versions" | sort -V -u | sed -n "/$current_version/,\$p" | tail -n +2)
   else
+    # if no state file, generate only the latest version
+    versions_to_generate="$github_release_latest"
     echo "version: $github_release_latest" > $state_file
   fi
 
+  # generate package.yml for each version
+  echo "$versions_to_generate" | while read version; do
+    if [ -z "$version" ]; then
+      continue
+    fi
+    
+    echo "generating version: $version"
+    export version
+    package_version_dir="$package_dir/$version"
+
+    # create the package version directory
+    mkdir -p "$package_version_dir"
+
+    # temporarily update state.yml with current version for template rendering
+    yq e ".version = env(version)" -i $state_file
+
+    # run the template to generate the package file
+    renderizer --settings=$package_dir/platforms.yml --settings=$package_dir/resource.yml --settings=$package_dir/state.yml $package_dir/template.yml > $package_version_dir/package.yml
+  done
+  
+  # write the final latest version to state file
   export version=$(echo ${github_release_latest})
-  package_version_dir="$package_dir/$version"
-
-  # write the latest version out to the latest file
-  yq e ".version = env(version)" -i $state_file  
-
-  # create the package version 
-  mkdir -p "$package_dir/$version"
-
-  # run the template to generate the package file
-  renderizer --settings=$package_dir/platforms.yml --settings=$package_dir/resource.yml --settings=$package_dir/state.yml $package_dir/template.yml > $package_version_dir/package.yml
+  yq e ".version = env(version)" -i $state_file
 done
