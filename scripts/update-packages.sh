@@ -104,7 +104,8 @@ do
     # filter versions to only those newer than current version using semantic version sorting
     # this works by: combining current+all versions, sorting semantically, finding current version position, 
     # then taking everything after it (tail -n +2 skips the current version itself)
-    versions_to_generate=$(echo -e "$current_version\n$all_versions" | sort -V -u | sed -n "/$current_version/,\$p" | tail -n +2)
+    # use grep -F for literal matching to handle special characters in version strings
+    versions_to_generate=$(echo -e "$current_version\n$all_versions" | sort -V -u | grep -A 999999 -F "$current_version" | tail -n +2)
   else
     # if no state file, generate only the latest version
     versions_to_generate="$github_release_latest"
