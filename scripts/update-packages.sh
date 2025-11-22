@@ -40,6 +40,25 @@ do
     github_release_version_regex=".*"
   fi
 
+  # check for the state file first to avoid unnecessary API calls
+  state_file="$package_dir/state.yml"
+  
+  # get the latest version first to check if we need to update
+  github_release_latest=$(curl -s https://api.github.com/repos/$github_release_owner/$github_release_repository/releases/latest | jq .tag_name -r | grep -E -o "${github_release_version_regex}" || true)
+  if [ "$github_release_latest" == "" ]; then
+    echo "skip: $package, github release version unable to be parsed with expression '$github_release_version_regex'"
+    continue;
+  fi
+  
+  # check if we're already on the latest version to avoid pagination
+  if [ -f "$state_file" ]; then
+    current_version=$(yq e '.version' $state_file)
+    if [ "$current_version" == "$github_release_latest" ]; then
+        echo "skip: $package, on latest version"
+        continue;
+    fi
+  fi
+
   # get all releases from github with pagination and extract versions that match the version regex
   # GitHub API returns max 100 items per page, so we need to paginate through all pages
   page=1
@@ -79,25 +98,9 @@ do
     echo "skip: $package, no github releases found or unable to parse versions"
     continue;
   fi
-  
-  # get the latest version from all versions
-  github_release_latest=$(echo "$all_versions" | tail -1)
-  
-  if [ "$github_release_latest" == "" ]; then
-    echo "skip: $package, github release version unable to be parsed with expression '$github_release_version_regex'"
-    continue;
-  fi
     
-  # check for the state file 
-  state_file="$package_dir/state.yml"            
-
-  # determine the starting version
+  # determine which versions to generate
   if [ -f "$state_file" ]; then
-    current_version=$(yq e '.version' $state_file)
-    if [ "$current_version" == "$github_release_latest" ]; then
-        echo "skip: $package, on latest version"
-        continue;
-    fi
     # filter versions to only those newer than current version using semantic version sorting
     # this works by: combining current+all versions, sorting semantically, finding current version position, 
     # then taking everything after it (tail -n +2 skips the current version itself)
