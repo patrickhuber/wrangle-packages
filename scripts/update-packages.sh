@@ -91,8 +91,8 @@ do
     page=$((page + 1))
   done
   
-  # Sort all versions semantically
-  all_versions=$(echo "$all_versions" | grep -v '^$' | sort -V)
+  # Remove empty lines from all_versions (keep chronological order from API)
+  all_versions=$(echo "$all_versions" | grep -v '^$')
   
   if [ -z "$all_versions" ]; then
     echo "skip: $package, no github releases found or unable to parse versions"
@@ -101,11 +101,21 @@ do
     
   # determine which versions to generate
   if [ -f "$state_file" ]; then
-    # filter versions to only those newer than current version using semantic version sorting
-    # this works by: combining current+all versions, sorting semantically, finding current version position, 
-    # then taking everything after it (tail -n +2 skips the current version itself)
-    # use grep -F for literal matching to handle special characters in version strings
-    versions_to_generate=$(echo -e "$current_version\n$all_versions" | sort -V -u | grep -A 999999 -F "$current_version" | tail -n +2)
+    # filter versions to only those newer than current version using chronological order from API
+    # GitHub API returns releases in reverse chronological order (newest first)
+    # we collect versions until we find the current version, then reverse to get oldest-to-newest
+    found_current=false
+    versions_to_generate=""
+    while IFS= read -r version; do
+      if [ "$version" == "$current_version" ]; then
+        found_current=true
+        break
+      fi
+      versions_to_generate="$version"$'\n'"$versions_to_generate"
+    done <<< "$all_versions"
+    
+    # Remove trailing newline
+    versions_to_generate=$(echo "$versions_to_generate" | grep -v '^$')
   else
     # if no state file, generate only the latest version
     versions_to_generate="$github_release_latest"
