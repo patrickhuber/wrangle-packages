@@ -53,19 +53,19 @@ do
     fi
     
     # Extract tag names from this page
-    page_versions=$(echo "$releases" | jq -r '.[].tag_name' 2>/dev/null | grep -E -o "${github_release_version_regex}")
+    page_versions=$(echo "$releases" | jq -r '.[].tag_name' 2>/dev/null | grep -E -o "${github_release_version_regex}" || true)
     
     # If no versions found on this page, we're done
     if [ -z "$page_versions" ]; then
       break
     fi
     
-    # Append to all versions
+    # Append to all versions (only if page_versions is non-empty)
     all_versions="$all_versions$page_versions"$'\n'
     
     # Check if we got less than 100 items, meaning this is the last page
-    items_count=$(echo "$releases" | jq '. | length' 2>/dev/null)
-    if [ "$items_count" -lt 100 ]; then
+    items_count=$(echo "$releases" | jq '. | length' 2>/dev/null || echo "0")
+    if [ -z "$items_count" ] || [ "$items_count" -lt 100 ]; then
       break
     fi
     
