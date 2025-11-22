@@ -40,8 +40,40 @@ do
     github_release_version_regex=".*"
   fi
 
-  # get all releases from github and extract versions that match the version regex
-  all_versions=$(curl -s https://api.github.com/repos/$github_release_owner/$github_release_repository/releases | jq -r '.[].tag_name' | grep -E -o "${github_release_version_regex}" | sort -V)
+  # get all releases from github with pagination and extract versions that match the version regex
+  # GitHub API returns max 100 items per page, so we need to paginate through all pages
+  page=1
+  all_versions=""
+  while true; do
+    releases=$(curl -s "https://api.github.com/repos/$github_release_owner/$github_release_repository/releases?per_page=100&page=$page")
+    
+    # Check if we got an empty array (no more pages)
+    if [ "$releases" = "[]" ] || [ -z "$releases" ]; then
+      break
+    fi
+    
+    # Extract tag names from this page
+    page_versions=$(echo "$releases" | jq -r '.[].tag_name' 2>/dev/null | grep -E -o "${github_release_version_regex}")
+    
+    # If no versions found on this page, we're done
+    if [ -z "$page_versions" ]; then
+      break
+    fi
+    
+    # Append to all versions
+    all_versions="$all_versions$page_versions"$'\n'
+    
+    # Check if we got less than 100 items, meaning this is the last page
+    items_count=$(echo "$releases" | jq '. | length' 2>/dev/null)
+    if [ "$items_count" -lt 100 ]; then
+      break
+    fi
+    
+    page=$((page + 1))
+  done
+  
+  # Sort all versions semantically
+  all_versions=$(echo "$all_versions" | grep -v '^$' | sort -V)
   
   if [ -z "$all_versions" ]; then
     echo "skip: $package, no github releases found or unable to parse versions"
