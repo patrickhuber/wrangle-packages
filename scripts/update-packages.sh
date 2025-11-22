@@ -105,14 +105,25 @@ do
     # GitHub API returns releases in reverse chronological order (newest first)
     # we collect versions until we find the current version, then reverse to get oldest-to-newest
     found_current=false
-    versions_to_generate=""
+    temp_versions=()
     while IFS= read -r version; do
       if [ "$version" == "$current_version" ]; then
         found_current=true
         break
       fi
-      versions_to_generate="$version"$'\n'"$versions_to_generate"
+      temp_versions+=("$version")
     done <<< "$all_versions"
+    
+    # If current version not found in releases, generate all versions
+    if [ "$found_current" = false ]; then
+      echo "warning: $package, current version '$current_version' not found in releases, generating all versions"
+    fi
+    
+    # Reverse array to get oldest-to-newest order
+    versions_to_generate=""
+    for ((i=${#temp_versions[@]}-1; i>=0; i--)); do
+      versions_to_generate="$versions_to_generate${temp_versions[i]}"$'\n'
+    done
     
     # Remove trailing newline
     versions_to_generate=$(echo "$versions_to_generate" | grep -v '^$')
