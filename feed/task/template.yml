@@ -1,0 +1,30 @@
+package:
+  name: task
+  version: {{ .version }}
+  targets:
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - task{{ $extension }}
+    steps:
+    {{- $archive := ".tar.gz" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $archive = ".zip" -}}
+    {{- end }}
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v{{ $.version }}/task_{{ $platform }}_{{ $architecture }}{{ $archive }}
+        out: task-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+    - action: extract
+      with:
+        archive: task-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $archive }}
+  {{- end }}
+  {{- end }}

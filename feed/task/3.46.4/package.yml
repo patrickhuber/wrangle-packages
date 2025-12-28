@@ -1,0 +1,184 @@
+package:
+  name: task
+  version: 3.46.4
+  targets:
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_darwin_amd64.tar.gz
+        out: task-3.46.4-darwin-amd64.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-darwin-amd64.tar.gz
+  - platform: darwin
+    architecture: arm64
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_darwin_arm64.tar.gz
+        out: task-3.46.4-darwin-arm64.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-darwin-arm64.tar.gz
+  - platform: freebsd
+    architecture: 386
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_freebsd_386.tar.gz
+        out: task-3.46.4-freebsd-386.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-freebsd-386.tar.gz
+  - platform: freebsd
+    architecture: amd64
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_freebsd_amd64.tar.gz
+        out: task-3.46.4-freebsd-amd64.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-freebsd-amd64.tar.gz
+  - platform: freebsd
+    architecture: arm
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_freebsd_arm.tar.gz
+        out: task-3.46.4-freebsd-arm.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-freebsd-arm.tar.gz
+  - platform: freebsd
+    architecture: arm64
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_freebsd_arm64.tar.gz
+        out: task-3.46.4-freebsd-arm64.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-freebsd-arm64.tar.gz
+  - platform: linux
+    architecture: 386
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_linux_386.tar.gz
+        out: task-3.46.4-linux-386.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-linux-386.tar.gz
+  - platform: linux
+    architecture: amd64
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_linux_amd64.tar.gz
+        out: task-3.46.4-linux-amd64.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-linux-amd64.tar.gz
+  - platform: linux
+    architecture: arm
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_linux_arm.tar.gz
+        out: task-3.46.4-linux-arm.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-linux-arm.tar.gz
+  - platform: linux
+    architecture: arm64
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_linux_arm64.tar.gz
+        out: task-3.46.4-linux-arm64.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-linux-arm64.tar.gz
+  - platform: linux
+    architecture: riscv64
+    executables:
+    - task
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_linux_riscv64.tar.gz
+        out: task-3.46.4-linux-riscv64.tar.gz
+    - action: extract
+      with:
+        archive: task-3.46.4-linux-riscv64.tar.gz
+  - platform: windows
+    architecture: 386
+    executables:
+    - task.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_windows_386.zip
+        out: task-3.46.4-windows-386.zip
+    - action: extract
+      with:
+        archive: task-3.46.4-windows-386.zip
+  - platform: windows
+    architecture: amd64
+    executables:
+    - task.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_windows_amd64.zip
+        out: task-3.46.4-windows-amd64.zip
+    - action: extract
+      with:
+        archive: task-3.46.4-windows-amd64.zip
+  - platform: windows
+    architecture: arm
+    executables:
+    - task.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_windows_arm.zip
+        out: task-3.46.4-windows-arm.zip
+    - action: extract
+      with:
+        archive: task-3.46.4-windows-arm.zip
+  - platform: windows
+    architecture: arm64
+    executables:
+    - task.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/go-task/task/releases/download/v3.46.4/task_windows_arm64.zip
+        out: task-3.46.4-windows-arm64.zip
+    - action: extract
+      with:
+        archive: task-3.46.4-windows-arm64.zip
