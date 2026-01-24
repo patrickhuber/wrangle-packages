@@ -1,0 +1,52 @@
+package:
+  name: pack
+  version: 0.39.1
+  targets:
+  - platform: linux
+    architecture: amd64
+    executables:
+    - pack
+    steps:
+    - action: download
+      with:
+        url: https://github.com/buildpacks/pack/releases/download/v0.39.1/pack-v0.39.1-linux.tgz
+        out: pack-0.39.1-linux-amd64.tgz
+    - action: extract
+      with:
+        archive: pack-0.39.1-linux-amd64.tgz
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - pack
+    steps:
+    - action: download
+      with:
+        url: https://github.com/buildpacks/pack/releases/download/v0.39.1/pack-v0.39.1-macos.tgz
+        out: pack-0.39.1-darwin-amd64.tgz
+    - action: extract
+      with:
+        archive: pack-0.39.1-darwin-amd64.tgz
+  - platform: darwin
+    architecture: arm64
+    executables:
+    - pack
+    steps:
+    - action: download
+      with:
+        url: https://github.com/buildpacks/pack/releases/download/v0.39.1/pack-v0.39.1-macos-arm64.tgz
+        out: pack-0.39.1-darwin-arm64.tgz
+    - action: extract
+      with:
+        archive: pack-0.39.1-darwin-arm64.tgz
+  - platform: windows
+    architecture: amd64
+    executables:
+    - pack.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/buildpacks/pack/releases/download/v0.39.1/pack-v0.39.1-windows.zip
+        out: pack-0.39.1-windows-amd64.zip
+    - action: extract
+      with:
+        archive: pack-0.39.1-windows-amd64.zip
