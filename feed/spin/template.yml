@@ -1,0 +1,38 @@
+package:
+  name: spin
+  version: {{ .version }}
+  targets:
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - spin{{ $extension }}
+    steps:
+    {{- $archive := ".tar.gz" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $archive = ".zip" -}}
+    {{- end }}
+    {{- $urlPlatform := $platform -}}
+    {{- if eq $platform "darwin" -}}
+      {{- $urlPlatform = "macos" -}}
+    {{- end }}
+    {{- $urlArch := $architecture -}}
+    {{- if eq $architecture "arm64" -}}
+      {{- $urlArch = "aarch64" -}}
+    {{- end }}
+    - action: download
+      with:
+        url: https://github.com/spinframework/spin/releases/download/v{{ $.version }}/spin-v{{ $.version }}-{{ $urlPlatform }}-{{ $urlArch }}{{ $archive }}
+        out: spin-v{{ $.version }}-{{ $urlPlatform }}-{{ $urlArch }}{{ $archive }}
+    - action: extract
+      with:
+        archive: spin-v{{ $.version }}-{{ $urlPlatform }}-{{ $urlArch }}{{ $archive }}
+  {{- end }}
+  {{- end }}

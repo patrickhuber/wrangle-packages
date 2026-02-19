@@ -1,0 +1,64 @@
+package:
+  name: spin
+  version: 3.6.1
+  targets:
+  - platform: linux
+    architecture: amd64
+    executables:
+    - spin
+    steps:
+    - action: download
+      with:
+        url: https://github.com/spinframework/spin/releases/download/v3.6.1/spin-v3.6.1-linux-amd64.tar.gz
+        out: spin-v3.6.1-linux-amd64.tar.gz
+    - action: extract
+      with:
+        archive: spin-v3.6.1-linux-amd64.tar.gz
+  - platform: linux
+    architecture: arm64
+    executables:
+    - spin
+    steps:
+    - action: download
+      with:
+        url: https://github.com/spinframework/spin/releases/download/v3.6.1/spin-v3.6.1-linux-aarch64.tar.gz
+        out: spin-v3.6.1-linux-aarch64.tar.gz
+    - action: extract
+      with:
+        archive: spin-v3.6.1-linux-aarch64.tar.gz
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - spin
+    steps:
+    - action: download
+      with:
+        url: https://github.com/spinframework/spin/releases/download/v3.6.1/spin-v3.6.1-macos-amd64.tar.gz
+        out: spin-v3.6.1-macos-amd64.tar.gz
+    - action: extract
+      with:
+        archive: spin-v3.6.1-macos-amd64.tar.gz
+  - platform: darwin
+    architecture: arm64
+    executables:
+    - spin
+    steps:
+    - action: download
+      with:
+        url: https://github.com/spinframework/spin/releases/download/v3.6.1/spin-v3.6.1-macos-aarch64.tar.gz
+        out: spin-v3.6.1-macos-aarch64.tar.gz
+    - action: extract
+      with:
+        archive: spin-v3.6.1-macos-aarch64.tar.gz
+  - platform: windows
+    architecture: amd64
+    executables:
+    - spin.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/spinframework/spin/releases/download/v3.6.1/spin-v3.6.1-windows-amd64.zip
+        out: spin-v3.6.1-windows-amd64.zip
+    - action: extract
+      with:
+        archive: spin-v3.6.1-windows-amd64.zip
