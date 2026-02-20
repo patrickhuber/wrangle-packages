@@ -1,18 +1,31 @@
-name: bosh
-version: 5.3.1
-targets:
-- platform: windows
-  tasks:
-  - download:
-      url: https://github.com/cloudfoundry/bosh-cli/releases/download/v((version))/bosh-cli-((version))-windows-amd64.exe
-      out: bosh-cli-((version))-windows-amd64.exe
-- platform: linux
-  tasks:
-  - download:
-      url: https://github.com/cloudfoundry/bosh-cli/releases/download/v((version))/bosh-cli-((version))-linux-amd64
-      out: bosh-cli-((version))-linux-amd64
-- platform: darwin
-  tasks:
-  - download:
-      url: https://github.com/cloudfoundry/bosh-cli/releases/download/v((version))/bosh-cli-((version))-darwin-amd64
-      out: bosh-cli-((version))-darwin-amd64
+package:
+  name: bosh
+  version: 5.3.1
+  targets:
+  - platform: windows
+    architecture: amd64
+    executables:
+    - bosh.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/cloudfoundry/bosh-cli/releases/download/v5.3.1/bosh-cli-5.3.1-windows-amd64.exe
+        out: bosh.exe
+  - platform: linux
+    architecture: amd64
+    executables:
+    - bosh
+    steps:
+    - action: download
+      with:
+        url: https://github.com/cloudfoundry/bosh-cli/releases/download/v5.3.1/bosh-cli-5.3.1-linux-amd64
+        out: bosh
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - bosh
+    steps:
+    - action: download
+      with:
+        url: https://github.com/cloudfoundry/bosh-cli/releases/download/v5.3.1/bosh-cli-5.3.1-darwin-amd64
+        out: bosh
