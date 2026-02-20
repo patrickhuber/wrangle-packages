@@ -1,0 +1,23 @@
+package:
+  name: bosh
+  version: {{ .version }}
+  targets:
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    {{- $extension := "" -}}
+    {{- if eq $platform "windows" -}}
+      {{- $extension = ".exe" -}}
+    {{- end }}
+    executables:
+    - bosh{{ $extension }}
+    steps:
+    - action: download
+      with:
+        url: https://github.com/cloudfoundry/bosh-cli/releases/download/v{{ $.version }}/bosh-cli-{{ $.version }}-{{ $platform }}-{{ $architecture }}{{ $extension }}
+        out: bosh{{ $extension }}
+  {{- end }}
+  {{- end }}
