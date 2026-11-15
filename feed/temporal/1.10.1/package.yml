@@ -1,0 +1,76 @@
+package:
+  name: temporal
+  version: 1.10.1
+  targets:
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - temporal
+    steps:
+    - action: download
+      with:
+        url: https://github.com/temporalio/cli/releases/download/v1.10.1/temporal_cli_1.10.1_darwin_amd64.tar.gz
+        out: temporal-1.10.1-darwin-amd64.tar.gz
+    - action: extract
+      with:
+        archive: temporal-1.10.1-darwin-amd64.tar.gz
+  - platform: darwin
+    architecture: arm64
+    executables:
+    - temporal
+    steps:
+    - action: download
+      with:
+        url: https://github.com/temporalio/cli/releases/download/v1.10.1/temporal_cli_1.10.1_darwin_arm64.tar.gz
+        out: temporal-1.10.1-darwin-arm64.tar.gz
+    - action: extract
+      with:
+        archive: temporal-1.10.1-darwin-arm64.tar.gz
+  - platform: linux
+    architecture: amd64
+    executables:
+    - temporal
+    steps:
+    - action: download
+      with:
+        url: https://github.com/temporalio/cli/releases/download/v1.10.1/temporal_cli_1.10.1_linux_amd64.tar.gz
+        out: temporal-1.10.1-linux-amd64.tar.gz
+    - action: extract
+      with:
+        archive: temporal-1.10.1-linux-amd64.tar.gz
+  - platform: linux
+    architecture: arm64
+    executables:
+    - temporal
+    steps:
+    - action: download
+      with:
+        url: https://github.com/temporalio/cli/releases/download/v1.10.1/temporal_cli_1.10.1_linux_arm64.tar.gz
+        out: temporal-1.10.1-linux-arm64.tar.gz
+    - action: extract
+      with:
+        archive: temporal-1.10.1-linux-arm64.tar.gz
+  - platform: windows
+    architecture: amd64
+    executables:
+    - temporal.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/temporalio/cli/releases/download/v1.10.1/temporal_cli_1.10.1_windows_amd64.zip
+        out: temporal-1.10.1-windows-amd64.zip
+    - action: extract
+      with:
+        archive: temporal-1.10.1-windows-amd64.zip
+  - platform: windows
+    architecture: arm64
+    executables:
+    - temporal.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/temporalio/cli/releases/download/v1.10.1/temporal_cli_1.10.1_windows_arm64.zip
+        out: temporal-1.10.1-windows-arm64.zip
+    - action: extract
+      with:
+        archive: temporal-1.10.1-windows-arm64.zip
