@@ -4,4 +4,4 @@ resource:
   source:
     owner: go-task
     repository: task
-    version-regex: '[0-9]+\.[0-9]+\.[0-9]+'
+    version_regex: '[0-9]+\.[0-9]+\.[0-9]+'

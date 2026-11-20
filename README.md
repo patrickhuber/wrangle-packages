@@ -24,7 +24,7 @@ resource:
   source:
     owner: patrickhuber
     repository: shim
-    version-regex: '[0-9]+\.[0-9]+\.[0-9]+'
+    version_regex: '[0-9]+\.[0-9]+\.[0-9]+'
 ```
 
 ### 'platforms.yml'
