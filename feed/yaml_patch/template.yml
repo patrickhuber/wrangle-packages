@@ -1,0 +1,17 @@
+package:
+  name: yaml_patch
+  version: {{ .version }}
+  targets:
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    steps:
+    - action: download
+      with:
+        url: https://github.com/pivotal-cf/yaml-patch/releases/download/v{{ $.version }}/yaml_patch{{ if eq $platform "windows" }}.exe{{ else }}_{{ $platform }}{{ end }}
+        out: yaml_patch_{{ $.version }}_{{ $platform }}{{ if eq $platform "windows" }}.exe{{ end }}
+  {{- end }}
+  {{- end }}
