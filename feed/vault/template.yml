@@ -1,0 +1,20 @@
+package:
+  name: vault
+  version: {{ .version }}
+  targets:
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    steps:
+    - action: download
+      with:
+        url: https://releases.hashicorp.com/vault/{{ $.version }}/vault_{{ $.version }}_{{ $platform }}_{{ $architecture }}.zip
+        out: vault-{{ $.version }}-{{ $platform }}.zip
+    - action: extract
+      with:
+        archive: vault-{{ $.version }}-{{ $platform }}.zip
+  {{- end }}
+  {{- end }}

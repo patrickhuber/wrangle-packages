@@ -1,0 +1,17 @@
+package:
+  name: linuxkit
+  version: {{ .version }}
+  targets:
+  {{- range .platforms }}
+  {{- $platform := .platform }}
+  {{- range .architectures }}
+  {{- $architecture := . }}
+  - platform: {{ $platform }}
+    architecture: {{ $architecture }}
+    steps:
+    - action: download
+      with:
+        url: https://github.com/linuxkit/linuxkit/releases/download/v{{ $.version }}/linuxkit-{{ $platform }}-{{ $architecture }}{{ if eq $platform "windows" }}.exe{{ end }}
+        out: linuxkit_{{ $.version }}_{{ $platform }}{{ if eq $platform "windows" }}.exe{{ end }}
+  {{- end }}
+  {{- end }}
