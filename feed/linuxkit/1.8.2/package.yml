@@ -1,0 +1,25 @@
+package:
+  name: linuxkit
+  version: 1.8.2
+  targets:
+  - platform: windows
+    architecture: amd64
+    steps:
+    - action: download
+      with:
+        url: https://github.com/linuxkit/linuxkit/releases/download/v1.8.2/linuxkit-windows-amd64.exe
+        out: linuxkit_1.8.2_windows.exe
+  - platform: linux
+    architecture: amd64
+    steps:
+    - action: download
+      with:
+        url: https://github.com/linuxkit/linuxkit/releases/download/v1.8.2/linuxkit-linux-amd64
+        out: linuxkit_1.8.2_linux
+  - platform: darwin
+    architecture: amd64
+    steps:
+    - action: download
+      with:
+        url: https://github.com/linuxkit/linuxkit/releases/download/v1.8.2/linuxkit-darwin-amd64
+        out: linuxkit_1.8.2_darwin
