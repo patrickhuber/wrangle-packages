@@ -1,0 +1,52 @@
+package:
+  name: pack
+  version: 0.40.6
+  targets:
+  - platform: linux
+    architecture: amd64
+    executables:
+    - pack
+    steps:
+    - action: download
+      with:
+        url: https://github.com/buildpacks/pack/releases/download/v0.40.6/pack-v0.40.6-linux.tgz
+        out: pack-0.40.6-linux-amd64.tgz
+    - action: extract
+      with:
+        archive: pack-0.40.6-linux-amd64.tgz
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - pack
+    steps:
+    - action: download
+      with:
+        url: https://github.com/buildpacks/pack/releases/download/v0.40.6/pack-v0.40.6-macos.tgz
+        out: pack-0.40.6-darwin-amd64.tgz
+    - action: extract
+      with:
+        archive: pack-0.40.6-darwin-amd64.tgz
+  - platform: darwin
+    architecture: arm64
+    executables:
+    - pack
+    steps:
+    - action: download
+      with:
+        url: https://github.com/buildpacks/pack/releases/download/v0.40.6/pack-v0.40.6-macos-arm64.tgz
+        out: pack-0.40.6-darwin-arm64.tgz
+    - action: extract
+      with:
+        archive: pack-0.40.6-darwin-arm64.tgz
+  - platform: windows
+    architecture: amd64
+    executables:
+    - pack.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/buildpacks/pack/releases/download/v0.40.6/pack-v0.40.6-windows.zip
+        out: pack-0.40.6-windows-amd64.zip
+    - action: extract
+      with:
+        archive: pack-0.40.6-windows-amd64.zip
