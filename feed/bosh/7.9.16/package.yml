@@ -1,0 +1,31 @@
+package:
+  name: bosh
+  version: 7.9.16
+  targets:
+  - platform: linux
+    architecture: amd64
+    executables:
+    - bosh
+    steps:
+    - action: download
+      with:
+        url: https://github.com/cloudfoundry/bosh-cli/releases/download/v7.9.16/bosh-cli-7.9.16-linux-amd64
+        out: bosh
+  - platform: darwin
+    architecture: amd64
+    executables:
+    - bosh
+    steps:
+    - action: download
+      with:
+        url: https://github.com/cloudfoundry/bosh-cli/releases/download/v7.9.16/bosh-cli-7.9.16-darwin-amd64
+        out: bosh
+  - platform: windows
+    architecture: amd64
+    executables:
+    - bosh.exe
+    steps:
+    - action: download
+      with:
+        url: https://github.com/cloudfoundry/bosh-cli/releases/download/v7.9.16/bosh-cli-7.9.16-windows-amd64.exe
+        out: bosh.exe
